@@ -9,7 +9,7 @@ STATUS = (
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     section = models.CharField(max_length=200)
     project = models.CharField(max_length=200)
     chapter = models.CharField(max_length=200)
