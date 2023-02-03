@@ -6,29 +6,36 @@ import datetime
 import django
 import os
 import re
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ue5web.settings')
+import random
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, get_user
 from blog.models import Post
 
-subjects=["django", "ai", 'animation', ]
+sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
+sue_or_max=random.choice(['max','sue'])
+yauthor = User.objects.get(username=sue_or_max)
+# user_instance = get_user_model().objects.get(username=file_meta["author"])
+
 file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
              "project": "001",
              "chapter": "ch01",
              "title": "",
              "slug": "", # slug field
-             "author": "max", # Foreign Key
-             "updated_on": "", # data_time
-             "created_on": "imgs",
+             "author": yauthor, # Foreign Key
+             "updated_on": datetime.datetime.now(), # data_time
+             "created_on": datetime.datetime.now(),
              "content": "", # text
-             "status": ""  # integer
+             "level": "beginner",
+             "status": "",  # integer
              }
+file_meta['slug'] = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
 # 创建output_path, 用于保存图片
 base_dir = Path(__file__).resolve().parent #
-output_path = os.path.join(base_dir, 'static', 'article',
-                           file_meta['depart'], file_meta['subject'],
+output_path = os.path.join(base_dir, 'static', 'blog',
+                           file_meta['section'], file_meta['project'],
                            file_meta["chapter"])
 if not os.path.exists(output_path):
     os.makedirs(output_path)
@@ -85,9 +92,9 @@ while old_text in text_for_post:
     text_for_post = text_for_post.replace(old_text, new_text, 1)
 
 # *** 查找和替换图片路径
-# <img src="/static/article/ue/sub001/ch01/1.png" />
+# <img src="/static/blog/ue/sub001/ch01/1.png" />
 img_name_list = re.findall(r'\d+.png', text_for_post)
-img_src = os.path.join("/static", "article", file_meta["depart"], file_meta["subject"], file_meta["chapter"])
+img_src = os.path.join("/static", "blog", file_meta["section"], file_meta["project"], file_meta["chapter"])
 print("")
 for img_name in img_name_list:
     old_text = f'"{img_name}"'
@@ -97,13 +104,8 @@ for img_name in img_name_list:
 # text_for_post = re.sub(r'\d+.png', new_text, text_for_post)
 
 # 在数据库中更新或者创建新的内容
-user_instance = get_user_model().objects.get(username=file_meta["author"])
-obj, created = ArticlePost.objects.update_or_create(
+
+obj, created = Post.objects.update_or_create(
     title = ydoc_name,
-    defaults = {"body": str(datetime.datetime.now()) + text_for_post,
-                "depart": file_meta["depart"],
-                "subject": file_meta["subject"],
-                "chapter": file_meta["chapter"],
-                "author": user_instance
-                }
-)
+    defaults = file_meta
+    )
