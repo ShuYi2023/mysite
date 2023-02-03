@@ -1,6 +1,7 @@
 # Max input
 .idea/
 .DS_store
+*.pyc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -132,4 +133,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 *.pyc
+*.pyc
+*.xml
 *.pyc
