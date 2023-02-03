@@ -14,13 +14,13 @@ from django.contrib.auth import get_user_model, get_user
 from blog.models import Post
 
 sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
-sue_or_max=random.choice(['max','sue'])
+sue_or_max=random.choice(['max','ShuYi'])
 yauthor = User.objects.get(username=sue_or_max)
 # user_instance = get_user_model().objects.get(username=file_meta["author"])
 
 file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
              "project": "001",
-             "chapter": "ch01",
+             "chapter": "ch02",
              "title": "",
              "slug": "", # slug field
              "author": yauthor, # Foreign Key
@@ -28,7 +28,7 @@ file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
              "created_on": datetime.datetime.now(),
              "content": "", # text
              "level": "beginner",
-             "status": "",  # integer
+             "status": 1,  # integer
              }
 file_meta['slug'] = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
@@ -104,6 +104,8 @@ for img_name in img_name_list:
 # text_for_post = re.sub(r'\d+.png', new_text, text_for_post)
 
 # 在数据库中更新或者创建新的内容
+file_meta["content"] = text_for_post
+file_meta["title"] = ydoc_name
 
 obj, created = Post.objects.update_or_create(
     title = ydoc_name,
