@@ -7,7 +7,7 @@ import django
 import os
 import re
 import random
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ue5web.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, get_user
@@ -17,7 +17,6 @@ sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
 sue_or_max=random.choice(['max','sue'])
 yauthor = User.objects.get(username=sue_or_max)
 # user_instance = get_user_model().objects.get(username=file_meta["author"])
-
 
 file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
              "project": "001",
@@ -93,9 +92,9 @@ while old_text in text_for_post:
     text_for_post = text_for_post.replace(old_text, new_text, 1)
 
 # *** 查找和替换图片路径
-# <img src="/static/article/ue/sub001/ch01/1.png" />
+# <img src="/static/blog/ue/sub001/ch01/1.png" />
 img_name_list = re.findall(r'\d+.png', text_for_post)
-img_src = os.path.join("/static", "article", file_meta["depart"], file_meta["subject"], file_meta["chapter"])
+img_src = os.path.join("/static", "blog", file_meta["section"], file_meta["project"], file_meta["chapter"])
 print("")
 for img_name in img_name_list:
     old_text = f'"{img_name}"'
@@ -108,5 +107,5 @@ for img_name in img_name_list:
 
 obj, created = Post.objects.update_or_create(
     title = ydoc_name,
-    defaults = ydefaults
+    defaults = file_meta
     )
