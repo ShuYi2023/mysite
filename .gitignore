@@ -1,7 +1,6 @@
 # Max input
 .idea/
 .DS_store
-*.pyc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -135,4 +134,5 @@ dmypy.json
 *.pyc
 *.pyc
 *.xml
+*.pyc
 *.pyc

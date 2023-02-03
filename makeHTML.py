@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ue5web.settings')
 django.setup()
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, get_user
-from article.models import ArticlePost
+from blog.models import Post
 
 subjects=["django", "ai", 'animation', ]
 file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
