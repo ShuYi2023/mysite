@@ -18,9 +18,9 @@ sue_or_max=random.choice(['max','ShuYi'])
 yauthor = User.objects.get(username=sue_or_max)
 # user_instance = get_user_model().objects.get(username=file_meta["author"])
 
-file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
-             "project": "001",
-             "chapter": "ch02",
+file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
+             "project": "002",
+             "chapter": "ch01",
              "title": "",
              "slug": "", # slug field
              "author": yauthor, # Foreign Key
