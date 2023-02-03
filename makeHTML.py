@@ -30,7 +30,6 @@ file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
              "level": "beginner",
              "status": 1,  # integer
              }
-file_meta['slug'] = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
 # 创建output_path, 用于保存图片
 base_dir = Path(__file__).resolve().parent #
@@ -106,6 +105,7 @@ for img_name in img_name_list:
 # 在数据库中更新或者创建新的内容
 file_meta["content"] = text_for_post
 file_meta["title"] = ydoc_name
+file_meta['slug'] = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
 obj, created = Post.objects.update_or_create(
     title = ydoc_name,
