@@ -26,7 +26,7 @@ file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
              "slug": "", # slug field
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(), # data_time
-             "created_on": timezone.now(),
+             # "created_on": timezone.now(),
              "content": "", # text
              "level": "beginner",
              "status": 1,  # integer
