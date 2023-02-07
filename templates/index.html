@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<style>
-    body {
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-        background-color: #fdfdfd;
-    }
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            font-size: 18px;
+            background-color: #fdfdfd;
+        }
 
-    .head_text {
-        color: white;
-    }
+        .head_text {
+            color: white;
+        }
 
-    .card {
-        box-shadow: 0 16px 48px #E3E7EB;
-    }
-</style>
+        .card {
+            box-shadow: 0 16px 48px #E3E7EB;
+        }
+    </style>
 
 <header class="masthead">
     <div class="overlay"></div>
@@ -30,11 +30,12 @@
         </div>
     </div>
 </header>
+
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
-            <!-- 在下面的 for 循环中, 把 post_list 替换为 object_list 也可以.
+            <!-- 在下面的 for 循环中, 把 post_list 改为 object_list 也可以.
             post_list 名称来源于class PostList(generic.ListView)
             -->
             {% for post in post_list %}
