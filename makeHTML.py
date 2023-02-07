@@ -20,7 +20,7 @@ yauthor = User.objects.get(username=sue_or_max)
 
 file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
              "project": "002",
-             "chapter": "ch01",
+             "chapter": "ch02",
              "title": "",
              "slug": "", # slug field
              "author": yauthor, # Foreign Key
