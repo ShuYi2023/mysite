@@ -5,15 +5,16 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-full_filename = 'settings.py'  # *** 输入文件名. 分清楚 dir, path, name 和 extension
-local_path = os.path.join(BASE_DIR,'mysite', full_filename)  # 版本 1
+full_filename = '00-installer-config-wifi.yaml'  # *** 输入文件名. 分清楚 dir, path, name 和 extension
+local_path = os.path.join(BASE_DIR,'backups', full_filename)  # 版本 1
 # local_path = os.path.join(BASE_DIR, full_filename)  # *** 看看是否用 版本 1
 
-remote_path = '/home/max/mysite/mysite/' + full_filename  # *** 远端的绝对路径
+
+remote_path = '/etc/netplan/' + full_filename  # *** 远端的绝对路径
 r_dir, r_fullfname = os.path.split(remote_path)
 fname, fext = os.path.splitext(full_filename)
 
-hostname = '192.168.0.244'
+hostname = '192.168.0.8'
 port = 22
 
 username = 'max'

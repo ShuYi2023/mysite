@@ -139,3 +139,4 @@ mysite/__pycache__/settings.cpython-310.pyc
 *.pyc
 *.pyc
 *.pyc
+blog/__pycache__/models.cpython-310.pyc
