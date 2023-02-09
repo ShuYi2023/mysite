@@ -1,5 +1,7 @@
 """
-下面的代码把 yfilename转换到 imgs 文件夹中，文件夹中包含 yfilename 中的所有图片，以及转换后的 html。
+运行程序前, 想把 docx 文档打开, 添加空格, 删空格, 然后并保存一下.
+下面的代码把 yfilename转换到 imgs 文件夹中，
+文件夹中包含 yfilename 中的所有图片，以及转换后的 html。
 """
 from pathlib import Path
 import datetime
@@ -19,8 +21,8 @@ yauthor = User.objects.get(username=sue_or_max)
 # user_instance = get_user_model().objects.get(username=file_meta["author"])
 
 file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
-             "project": "002",
-             "chapter": "ch02",
+             "project": "003",
+             "chapter": "ch01",
              "title": "",
              "slug": "", # slug field
              "author": yauthor, # Foreign Key

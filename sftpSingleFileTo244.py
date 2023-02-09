@@ -1,6 +1,5 @@
 # 传文件之前, 要先 sudo chown /文件夹/
 
-
 import paramiko
 import os
 from pathlib import Path
