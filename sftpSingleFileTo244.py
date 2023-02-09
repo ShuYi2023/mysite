@@ -1,20 +1,25 @@
-#!/usr/bin/python
+# 传文件之前, 要先 sudo chown /文件夹/
+
 
 import paramiko
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-full_filename = '00-installer-config-wifi.yaml'  # *** 输入文件名. 分清楚 dir, path, name 和 extension
-local_path = os.path.join(BASE_DIR,'backups', full_filename)  # 版本 1
-# local_path = os.path.join(BASE_DIR, full_filename)  # *** 看看是否用 版本 1
+'''
+local_path = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/backups/mysite_ng_config'  # *** 本地的绝对路径
+remote_path = '/etc/nginx/sites-available/mysite_ng_config'  # *** 远端的绝对路径
 
+local_path = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/backups/mysite.conf'  # *** 本地的绝对路径
+remote_path = '/etc/supervisor/conf.d/mysite.conf'  # *** 远端的绝对路径
+'''
 
-remote_path = '/etc/netplan/' + full_filename  # *** 远端的绝对路径
+local_path = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/backups/mysite_ng_config'  # *** 本地的绝对路径
+remote_path = '/etc/nginx/sites-available/mysite_ng_config'  # *** 远端的绝对路径
+
 r_dir, r_fullfname = os.path.split(remote_path)
-fname, fext = os.path.splitext(full_filename)
+fname, fext = os.path.splitext(r_fullfname)
 
-hostname = '192.168.0.8'
+hostname = '192.168.0.244'
 port = 22
 
 username = 'max'
@@ -37,3 +42,5 @@ with paramiko.SSHClient() as client:
     sftp_client.put(local_path, remote_path)  # put or get
     print("file putted")
     # sftp_client.get(remote_path, local_path)  # get remote_path to local_file
+
+# sudo ln -s /etc/nginx/sites-available/mysite_ng_config /etc/nginx/sites-enabled/
