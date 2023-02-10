@@ -1,6 +1,10 @@
 /* <link rel="stylesheet" href="C:\Users\maxyi\Desktop\ubshare\projects\static\css\blog.css" type="text/css" /> */
 /*<div class="yimg">图1:↗<img  src ="C:/Users/maxyi/Desktop/ubshare/projects/media/project099ch01image001.png"></div>*/
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
     font-size:100%;
     /*谷歌浏览器最小字号是12啊*/
@@ -51,9 +55,11 @@ header{
     box-shadow:0px 0px 10px #000;
 }
 
+/*
 .menuitem {
-    /*background-color:#5cc18a29;*/
+    background-color:#5cc18a29;
 }
+*/
 
 .yregistration{
     grid-column:5 / 6;
@@ -199,7 +205,7 @@ h2 {
     /*color:#FCA205;*/
     color:#0d923f;
     /*margin-top:0;*/
-    align:center;
+    text-align:center;
 }
 
 .date {
