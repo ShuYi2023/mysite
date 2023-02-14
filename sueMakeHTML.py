@@ -20,8 +20,8 @@ yauthor = User.objects.get(username=sue_or_max)
 # user_instance = get_user_model().objects.get(username=file_meta["author"])
 
 file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
-             "project": "002",
-             "chapter": "ch02",
+             "project": "001",
+             "chapter": "ch01",
              "title": "",
              "slug": "", # slug field
              "author": yauthor, # Foreign Key
@@ -34,7 +34,7 @@ file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
 
 
 # *** 获得 html 文件的绝对路径
-html_path = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/sue_test.html'
+html_path = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/static/blog/django/001/output.html'
 
 print("")
 
