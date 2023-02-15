@@ -34,7 +34,7 @@ file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
 
 
 # *** 获得 html 文件的绝对路径
-html_path = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/static/blog/django/001/output.html'
+html_path = '/static/blog/django/001/ch01/output.html'
 
 print("")
 

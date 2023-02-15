@@ -27,7 +27,7 @@ sue_or_max=random.choice(['max','ShuYi'])
 yauthor = User.objects.get(username=sue_or_max)
 
 file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
-             "project": "003",
+             "project": "001",
              "chapter": "ch01",
              "title": "",
              "author": yauthor, # Foreign Key
@@ -56,6 +56,7 @@ for each_file in f_list:
     name_each_file, ext = os.path.splitext(each_file)  # name of each file
     if ext == ".md":
         md_list.append(each_file)
+
 if len(md_list) == 0:
     print("请先创建md文件")
     exit(0)
@@ -67,7 +68,7 @@ j = int(input("请选择要处理的文件的序号: "))
 ymd_path = os.path.join(output_path, md_list[i])
 
 # *** 将md文件转化为html文件
-html_output_path = os.path.join(output_path, 'output.html')
+html_output_path = os.path.join(output_path, 'output_stage1.html')
 convert_markdown_to_html(ymd_path, html_output_path)
 
 # *** 读取html 的内容
@@ -91,7 +92,7 @@ while old_text in text_for_post:
 
 # *** 查找和替换图片路径
 # <img src="/static/blog/ue/sub001/ch01/img_2.png" />
-img_name_list = re.findall(r'img_\d+.png', text_for_post)
+img_name_list = re.findall(r'img_\d+.png|img.png', text_for_post)  # | 符号前后不要插入空格!
 img_src = os.path.join("/static", "blog", file_meta["section"], file_meta["project"], file_meta["chapter"])
 print("")
 for img_name in img_name_list:
@@ -99,12 +100,22 @@ for img_name in img_name_list:
     new_text = f'"{img_src}/{img_name}"'
     text_for_post = text_for_post.replace(old_text, new_text, 1)
 
-# 在数据库中更新或者创建新的内容
-with open(html_output_path, 'r', encoding='UTF-8') as file:
-    ytitle = file.readline().strip('# ')
+# ***写入到本地的的 output_for_post.html
+html_output_path = os.path.join(output_path, 'output_for_post.html')
+with open(html_output_path, "w", encoding='UTF-8') as f:
+    f.write(text_for_post)
 
+# 获取文章的标题
+with open(html_output_path, 'r', encoding='UTF-8') as file:
+    ytitle = file.readline()  # "<p>如何编辑能够发表在blog系统中的md文档</p>"
+    pattern = "<p>|</p>" # this matches either <p> or </p>
+    replacement = "" # this replaces the matched tags with an empty string
+    result = re.sub(pattern, replacement, ytitle) # this returns the string without the tags
+    print(result) # this prints 如何编辑能够发表在blog系统中的md文档
+
+# 在数据库中更新或者创建新的内容
 file_meta["content"] = text_for_post
-file_meta["title"] = ytitle
+file_meta["title"] = result
 
 yslug = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
