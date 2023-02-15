@@ -1,0 +1,7 @@
+
+def convertmarkdowntohtml(inputfile, outputfile):
+    with open(inputfile, 'r') as file:
+        markdowntext = file.read()
+    htmltext = markdown2.markdown(markdowntext)
+    with open(outputfile, 'w') as file:
+        file.write(html_text)

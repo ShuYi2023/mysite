@@ -1,42 +1,82 @@
-<p>如何编辑能够发表在blog系统中的md文档</p>
+<p>blog文章编辑规范</p>
 
-<h2>Blog的标题要保留</h2>
+<h1>文章用Markdown格式写</h1>
 
 <ul>
-<li>md文件的第一行是blog的标题, 不要删掉.</li>
+<li>请在Pycharm中用Markdown格式写blog文章<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >001</span > </span >
+<ul>
+<li>文件名存为.md<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >002</span > </span ></li>
+</ul></li>
 </ul>
 
-<h2>插入图片</h2>
+<blockquote>
+  <p>Markdown编辑器会把剪贴板中的图片, 直接变成文件链接, 然后粘贴到Markdown文本中. 在预览中能够直接看到图片.</p>
+</blockquote>
 
-<p>可以直接把ishot剪切出来的图片, 粘贴到这里. 粘贴的时候, md 会把链接直接贴在这里。感觉图片有些模糊, 但勉强可用. 可以试一下在浏览器中渲染出来的效果会是什么样的。
-* 即使是从网络上拷贝出来的图片, 它也会复制到本地, 并修改名字.</p>
+<h1>文章的的标题从一级标题开始分层次</h1>
+
+<ul>
+<li>md文件的第一行是blog的标题, 不要删掉.<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >003</span > </span ></li>
+</ul>
+
+<h1>插入图片</h1>
+
+<ul>
+<li>可以直接把ishot剪切出来的图片, 粘贴到这里. 粘贴的时候, md 会把链接直接贴在这里。感觉图片有些模糊, 但勉强可用. 可以试一下在浏览器中渲染出来的效果会是什么样的。<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >004</span > </span ></li>
+<li>即使是从网络上拷贝出来的图片, 它也会复制到本地, 并修改名字.</li>
+</ul>
 
 <p><img src="/static/blog/django/001/ch01/img_3.png" alt="/static/blog/django/001/ch01/img_3.png" /></p>
 
-<h2>插入更多的图片</h2>
+<h1>插入更多的图片</h1>
 
-<p>插入第二张图片吧. 这时候图片的名称会自动排序. 为了避免图片与文字混在一起, 文字和图片要用回车符隔开.</p>
-
-<p><img src="/static/blog/django/001/ch01/img.png" alt="/static/blog/django/001/ch01/img.png" /></p>
-
-<p>试一下截到图片10会怎么样↓</p>
-
-<p><img src="/static/blog/django/001/ch01/img_10.png" alt="/static/blog/django/001/ch01/img_10.png" /></p>
-
-<p>我很想知道图片是插入在哪里的. 看一看?
-原来插入到了它的同一级子目录下. 真是不错哦 ↓</p>
+<ul>
+<li>为了避免图片与文字混在一起, 文字和图片要用回车符隔开.<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >005</span > </span >
+<img src="/static/blog/django/001/ch01/img.png" alt="/static/blog/django/001/ch01/img.png" /></li>
+<li>试一下截到图片10会怎么样, 这样就能看出命名的规则了↓
+<img src="/static/blog/django/001/ch01/img_10.png" alt="/static/blog/django/001/ch01/img_10.png" /></li>
+<li>想知道图片是插入在哪里的? 
+<ul>
+<li>原来插入到了md文件的同一级目录↓<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >006</span > </span ></li>
+</ul></li>
+</ul>
 
 <p><img src="/static/blog/django/001/ch01/img_16.png" alt="/static/blog/django/001/ch01/img_16.png" /></p>
 
-<h2>还有三个问题:</h2>
+<h1>还有三个问题:</h1>
 
 <ul>
-<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >001</span > </span >我们可以把md文档转换为HTML文档吗?
+<li>我们可以把md文档转换为HTML文档吗?<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >007</span > </span >
 <ul>
 <li>因为Markdown不支持我们的CheckBox, 因此需要把我们写的md文件转换为HTML发表.</li>
-<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >002</span > </span >把md文档转换成html文档容易吗?</li>
+<li>把md文档转换成html文档容易吗?</li>
 </ul></li>
-<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >003</span > </span >能在md文档中插入代码Python, Bash等风格的代码吗?</li>
+<li>能在md文档中插入代码Python, Bash等风格的代码吗?<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >008</span > </span ></li>
 <li>试一试看看.</li>
-* 
+</ul>
+
+<h1>插入代码用蝌蚪符 back tick</h1>
+
+<ul>
+<li>例如, 在Markdown文件中这样写, 注意蝌蚪符后面的python是小写↓<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >009</span > </span >
+<img src="/static/blog/django/001/ch01/img_4.png" alt="/static/blog/django/001/ch01/img_4.png" /></li>
+<li>得到的预览结果是这样的↓ 注意插入代码之前, 要先插入一个空行, 避免代码块和其他内容混在一起.<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >010</span > </span ></li>
+</ul>
+
+<p><pre><code class="language-python">
+def convertmarkdowntohtml(inputfile, outputfile):
+    with open(inputfile, 'r') as file:
+        markdowntext = file.read()
+    htmltext = markdown2.markdown(markdowntext)
+    with open(outputfile, 'w') as file:
+        file.write(html_text)
+
+sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
+sueormax=random.choice(['max','ShuYi'])  # 选作者
+</code></pre></p>
+
+<h1>总结</h1>
+
+<ul>
+<li>用起来非常方便. 比HTML简洁多了.</li>
 </ul>

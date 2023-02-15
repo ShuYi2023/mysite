@@ -14,17 +14,9 @@ from django.utils import timezone
 def convert_markdown_to_html(input_file, output_file):
     with open(input_file, 'r') as file:
         markdown_text = file.read()
-    html_text = markdown2.markdown(markdown_text)
+    html_text = markdown2.markdown(markdown_text, extras=['fenced-code-blocks', ])
     with open(output_file, 'w') as file:
         file.write(html_text)
-
-def clear_em(raw_code_block):
-    new_code_block = raw_code_block
-    for dirty_tag in [r'<em>', r'</em>', r'<p>', r'</p>', r'```python', r'```']:
-        new_code_block = new_code_block.replace(dirty_tag, '')
-    return new_code_block
-
-
 
 # 设置文件属性
 sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
@@ -107,20 +99,21 @@ for img_name in img_name_list:
     text_for_post = text_for_post.replace(old_text, new_text, 1)
 
 
-# *** 查找代码块
-# <pre><code class="language-javascript">const variable = "Here's some JavaScript";</code></pre>
-ypattern= r'```.*?```'
-code_blocks = re.findall(ypattern, text_for_post, flags=re.DOTALL)
-new_text_begin_py = r'<pre><code class="language-python">'  # python是_py, 其他代码请修改
-new_text_end = r'</code></pre>'
-
-for code_block in code_blocks:
-    if 'python' in code_block:
-        code_block2 = clear_em(code_block)
-        code_block2.strip()
-        new_text = new_text_begin_py + code_block2 + new_text_end
-        text_for_post = text_for_post.replace(code_block, new_text)
-        text_for_post = text_for_post.strip()
+# # *** 查找代码块
+# # <pre><code class="language-javascript">const variable = "Here's some JavaScript";</code></pre>
+# ypattern= r'```.*?```'
+# code_blocks = re.findall(ypattern, text_for_post, flags=re.DOTALL)
+# new_text_begin_py = r'<pre><code class="language-python">'  # 其他代码请修改
+# new_text_end = r'</code></pre>'
+#
+# for code_block in code_blocks:
+#     if 'python' in code_block:
+#         new_text1 = code_block.replace("```python", "")  # 删除 ```python
+#         new_text2 = new_text1.replace("```", "")  # 删除 ```
+#
+#         new_text = new_text_begin_py + new_text2 + new_text_end
+#         text_for_post = text_for_post.replace(code_block, new_text)
+#         text_for_post = text_for_post.strip()
 
 
 # ***写入到本地的的 output_for_post.html
@@ -142,20 +135,8 @@ file_meta["title"] = result
 
 yslug = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
-slug_exist = True  # 先假设slug存在
-try:
-    yfind = Post.objects.get(slug=yslug)
-except:
-    slug_exist = False  # 如果找不到slug, 设置slug_exist为不存在
-
-if slug_exist:
-    yinput = input("要覆盖原来的博文吗(y)?")
-    if yinput.lower().strip() != 'y':
-        print("你选择了不覆盖, 程序退出")
-        exit(0)
-
 obj, created = Post.objects.update_or_create(
     slug = yslug,
     defaults = file_meta
     )
-print("博文更新成功!")
+
