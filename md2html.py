@@ -14,7 +14,7 @@ from django.utils import timezone
 def convert_markdown_to_html(input_file, output_file):
     with open(input_file, 'r') as file:
         markdown_text = file.read()
-    html_text = markdown2.markdown(markdown_text)
+    html_text = markdown2.markdown(markdown_text)  # 可以添加参数 extras=[...]
     with open(output_file, 'w') as file:
         file.write(html_text)
 
@@ -98,7 +98,9 @@ while old_text in text_for_post:
 
 # *** 查找和替换图片路径
 # <img src="/static/blog/ue/sub001/ch01/img_2.png" />
-img_name_list = re.findall(r'img_\d+.png|img.png', text_for_post)  # | 符号前后不要插入空格!
+img_name_list1 = re.findall(r'img_\d+.png|img.png', text_for_post)  # | 符号前后不要插入空格!
+img_name_list2 = re.findall(r'\d+.png', text_for_post)
+img_name_list = img_name_list1 + img_name_list2
 img_src = os.path.join("/static", "blog", file_meta["section"], file_meta["project"], file_meta["chapter"])
 print("")
 for img_name in img_name_list:
