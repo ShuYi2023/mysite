@@ -135,12 +135,14 @@ dmypy.json
 .pyre/
 *.pyc
 *.xml
-mysite/__pycache__/settings.cpython-310.pyc
 *.pyc
 *.pyc
 *.pyc
-blog/__pycache__/models.cpython-310.pyc
-blog/__pycache__/models.cpython-310.pyc
 blog/__pycache__/models.cpython-310.pyc
 blog/__pycache__/views.cpython-310.pyc
 blog/__pycache__/__init__.cpython-310.pyc
+.vscode/settings.json
+.vscode/settings.json
+mysite/__pycache__/*.pyc
+blog/__pycache__/*.pyc
+
