@@ -1,3 +1,5 @@
+#注意: 在vs code中运行时, 要选择 run Python file 这个选项, 而不是直接点击快捷键.
+
 import markdown2
 from pathlib import Path
 import django
