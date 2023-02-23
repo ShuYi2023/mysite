@@ -14,12 +14,12 @@ from django.utils import timezone
 
 
 def convert_markdown_to_html(input_file, output_file):
-    with open(input_file, 'r') as file:
+    with open(input_file, 'r', encoding='UTF-8') as file:
         markdown_text = file.read()
     html_text = markdown2.markdown(markdown_text)  # 可以添加参数 extras=[...]
-    with open(output_file, 'w') as file:
+    with open(output_file, 'w', encoding='UTF-8') as file:
         file.write(html_text)
-id
+
 def clear_em(raw_code_block):
     new_code_block = raw_code_block
     for dirty_tag in [r'<em>', r'</em>', r'<p>', r'</p>', r'```python', r'```']:
@@ -132,13 +132,23 @@ html_output_path = os.path.join(output_path, 'output_for_post.html')
 with open(html_output_path, "w", encoding='UTF-8') as f:
     f.write(text_for_post)
 
-# 获取文章的标题
-with open(html_output_path, 'r', encoding='UTF-8') as file:
-    ytitle = file.readline()  # "<p>如何编辑能够发表在blog系统中的md文档</p>"
-    pattern = "<p>|</p>" # this matches either <p> or </p>
-    replacement = "" # this replaces the matched tags with an empty string
-    result = re.sub(pattern, replacement, ytitle) # this returns the string without the tags
+# 获取文章的标题, 从HTML中删除标题, 删除标题的HTML tag
+with open(html_output_path, 'r+', encoding='UTF-8') as f:
+    lines = f.readlines()
+    ytitle = lines[0].strip()
+    pattern = r"<h1>|</h1>" # this matches either <p> or </p>
+    replacement = ""
+    result = re.sub(pattern, replacement, ytitle) # returns string without the tags
     print(result) # this prints 如何编辑能够发表在blog系统中的md文档
+    f.seek(0)
+    f.truncate()
+    for line in lines[1:]:
+        f.write(line)
+
+
+# text_for_post 重新赋值
+with open(html_output_path, 'r', encoding='UTF-8') as f:
+    text_for_post = f.read()
 
 # 在数据库中更新或者创建新的内容
 file_meta["content"] = text_for_post

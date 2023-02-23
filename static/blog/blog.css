@@ -1,9 +1,12 @@
 /* <link rel="stylesheet" href="C:\Users\maxyi\Desktop\ubshare\projects\static\css\blog.css" type="text/css" /> */
 /*<div class="yimg">图1:↗<img  src ="C:/Users/maxyi/Desktop/ubshare/projects/media/project099ch01image001.png"></div>*/
 
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*/
+
 
 html {
     font-size:100%;
@@ -139,8 +142,8 @@ p {
     /*padding-bottom:0.2em;*/
 }
 
-.sanji {
-    color:black;
+.sjji {
+    color:rgb(244, 10, 212);
     font-size:1rem;
     padding-left:2.5rem;
     /*background-color:rgb(247,247,247);*/
@@ -150,6 +153,12 @@ p {
     -webkit-margin-start: 0rem;
     -webkit-margin-end: 0rem;
 
+}
+
+h3 {
+    font-size: 1.2rem;
+    color:rgb(62, 9, 237);
+    padding-left: 1.5rem;
 }
 
 a {
@@ -233,6 +242,13 @@ h2 {
     border-color:blue blue blue green;*/
     /*max-width:31rem;*/
     max-width:80%;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:85%;
 }
 
 header {

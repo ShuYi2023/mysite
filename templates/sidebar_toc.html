@@ -1,0 +1,18 @@
+{% load static %}
+
+
+{% block sidebar %}
+
+<link rel="stylesheet" href="{% static 'toc/toctoc.min.css' %}" />
+<div id="toctoc"></div>
+<script src="{% static 'toc/toctoc.min.js' %}"></script>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+        <h5 class="card-header">本文目录</h5>
+        $(function(){
+            $.toctoc();
+        });
+</div>
+
+{% endblock sidebar %}
