@@ -1,24 +1,56 @@
 {% extends 'base.html' %}
-
-
+{% load static %}
+<script src="{% static 'toc/table-of-contents.js' %}"></script>
 
 {% block content %}
+
+<style>
+.sidetoc {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 20%;
+}
+
+@media (max-width: 720px) {
+  .sidetoc { 
+    height: 100%;
+    width: 100%;
+    position: sticky; 
+  } 
+}
+
+</style>
+
 
 <div class="container">
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3 left top">
-
-      <div>
         <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
         <p class=" text-muted">{{ post.author }} | updated on {{ post.updated_on }}</p>
-        <div style="background-color: #f0f0f0;" >{{ object.content | safe }}</div>
-      </div>
-
+        <div data-content>
+          <div style="background-color: #f0f0f0;" >{{ object.content | safe }}</div>
+        </div>
     </div>
 
-    <div>
-      {% include 'sidebar_toc.html' %} 
+    <!-- sidebar 放置文章内导航-->
+    <div class="col-md-4 card mb-4 mt-3 right top">
+      <div class="sidetoc">    
+        <div data-toc></div>
+      </div>
     </div>
 </div>
 
+<!-- 自动生成TOC的js插件 -->
+<script src="{% static 'toc/table-of-contents.js' %}"></script>
+<script>
+  tableOfContents('[data-content]', '[data-toc]', {
+    heading: '文章目录', // Change the headings
+    listType: 'ol', // Change the list type
+    levels: 'h2, h3' // Change the levels used
+  });
+</script>
+
+
 {% endblock content %}
+
