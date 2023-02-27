@@ -22,8 +22,12 @@
         <div class="row">
             <div class=" col-md-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to my awesome Blog </h3>
-                    <p class="text-light">We Love Django As much as you do..! &nbsp
+                    <h4 class=" site-heading my-4 mt-3 text-white"> </h4>
+                    <!-- 导航到各个sections -->
+                    <p class="text-light">
+                        {% for sect in sections %}  <!-- 这里将来要放置链接 -->
+                          {{ sect }}
+                        {% endfor %}
                     </p>
                 </div>
             </div>
@@ -38,15 +42,16 @@
             <!-- 在下面的 for 循环中, 把 post_list 改为 object_list 也可以.
             post_list 名称来源于class PostList(generic.ListView)
             -->
+
             {% for post in post_list %}
-            <div class="card mb-4">
+              <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.author }} | updated {{ post.updated_on}} </p>
-                    <p class="card-text">{{post.content|slice:":200" }}</p>
+                    <!--  <p class="card-text">{{post.content|slice:":200" }}</p> -->
                     <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
-            </div>
+              </div>
             {% endfor %}
         </div>
         {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
