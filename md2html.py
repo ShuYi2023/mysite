@@ -33,8 +33,8 @@ sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
 sue_or_max=random.choice(['max','ShuYi'])
 yauthor = User.objects.get(username=sue_or_max)
 
-file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
-             "project": "001",
+file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
+             "project": "bp01",
              "chapter": "ch01",
              "title": "",
              "author": yauthor, # Foreign Key

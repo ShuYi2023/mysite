@@ -1,0 +1,369 @@
+<h1>blueprints初级教程-1</h1>
+
+<h2>啰嗦几句</h2>
+
+<ul>
+<li>要打钩的地方, 基本上都是要你采取行动的地方.</li>
+<li>动作都做完了, 教程肯定能够顺利通关√</li>
+</ul>
+
+<h2>对设备的要求</h2>
+
+<ul>
+<li>建议准备一个 Pad, 用Pad看教程, 用Mac或者PC实际操作.
+<ul>
+<li>最好能够双屏</li>
+</ul></li>
+<li>在工作中, 大家都会用英文界面和术语, 所以不要惧怕英文.</li>
+<li>我的机器用的是 Nvidia 3080 显卡. 还比较流畅.
+<ul>
+<li>开发游戏的时候, 建议用性能比较强的机器, 免得因为不流畅而半途而废√</li>
+<li>也别自己组装, 买品牌机, 坏了有维修的地方, 免得把时间浪费在修机器上</li>
+</ul></li>
+</ul>
+
+<h2>特别提醒</h2>
+
+<ul>
+<li>把教程中要打钩的地方, 都打上钩就能完成教程√</li>
+<li>要注意教程图片中有箭头的地方√</li>
+<li>有些地方是多图, 有问题的时候, 一定要多看几张图片√</li>
+<li>重复一遍: 有问题的时候, 一定要往下多看几张图片√</li>
+</ul>
+
+<h2>安装和打开Unreal Engine 5</h2>
+
+<ul>
+<li><p>安装和打开Unreal Engine 5; 创建一个名为LearnBP的项目√</p>
+
+<p><img src="20230227133412.png" alt="" /></p>
+
+<p><img src="20230227133504.png" alt="" /></p></li>
+<li><p>Play一下√</p></li>
+</ul>
+
+<p><img src="20230227133636.png" alt="" /></p>
+
+<p><img src="20230227133726.png" alt="" /></p>
+
+<h2>创建一个Blueprint</h2>
+
+<ul>
+<li>打开content drawer√</li>
+</ul>
+
+<p><img src="20230227133834.png" alt="" /></p>
+
+<ul>
+<li>添加一个文件夹√, 取名Blueprints√</li>
+</ul>
+
+<p><img src="20230227133945.png" alt="" /> </p>
+
+<h2>在文件夹中添加一个 Blueprint</h2>
+
+<ul>
+<li>右键点击 Blueprints 文件夹, 按照下图选择 Add/Import Content, 再选择 Blueprint Class√</li>
+</ul>
+
+<p><img src="20230227134250.png" alt="" />  </p>
+
+<ul>
+<li>选择 Actor作为这个Blueprint的父类√</li>
+</ul>
+
+<p><img src="20230227134346.png" alt="" /></p>
+
+<ul>
+<li>把新建的 Blueprint 改名为 BP_Test√</li>
+</ul>
+
+<p><img src="20230227134425.png" alt="" />  </p>
+
+<ul>
+<li><p>在文件夹中双击 BP_Test 打开这个蓝图进行编辑√</p></li>
+<li><p>把 BP_Test 标签页(tab)拖到ThirdPersonMap旁边√</p></li>
+</ul>
+
+<p><img src="20230227134517.png" alt="" />  </p>
+
+<p><img src="20230227134554.png" alt="" />  </p>
+
+<h2>给BP添加一个球体</h2>
+
+<ul>
+<li>在 Components 下面选中BP_Test; 点击Add; 输入sphere; 从提示中选择Sphere; 别选成 Sphere Collision 了√</li>
+</ul>
+
+<p><img src="20230227134711.png" alt="" />
+<img src="20230227134722.png" alt="" /></p>
+
+<ul>
+<li>添加 Sphere 之后, Components 下面是这样↓</li>
+</ul>
+
+<p><img src="20230227134840.png" alt="" />  </p>
+
+<ul>
+<li><p>特别注意, 哪个组件高亮, 则点击Add的时候, 就会在这个组件的下面添加子组件√</p></li>
+<li><p>compile, save√</p></li>
+<li><p>切换到ThirdPersonMap; 把BP拖到ThirdPersonMap中√</p></li>
+</ul>
+
+<p><img src="20230227135108.png" alt="" />  </p>
+
+<h2>修改BP</h2>
+
+<ul>
+<li>设置BP的大小。
+<ul>
+<li>点击 BP<em>Test 标签, 回到BP</em>Test蓝图界面√</li>
+<li>选中Sphere; 找到Details标签; 把Scale的(x, y, z)的值都设置为0.5√</li>
+</ul></li>
+</ul>
+
+<p><img src="20230227135308.png" alt="" />    </p>
+
+<ul>
+<li>在 Details 中找到 Simulate Physics(模拟物理), 勾选√</li>
+</ul>
+
+<p><img src="20230227135404.png" alt="" />  </p>
+
+<ul>
+<li><p>save; compile√</p></li>
+<li><p>回到地图, Play, 这时的球应该可以踢了√</p></li>
+</ul>
+
+<h2>Event Graph</h2>
+
+<ul>
+<li>找到 BP_Test 的Event Graph 标签, 点击√
+<ul>
+<li>操作提示: 在画布的空白处按住鼠标右键不放, 可以拖动整个画布</li>
+</ul></li>
+</ul>
+
+<p><img src="20230227135523.png" alt="" /></p>
+
+<ul>
+<li>删除事件 Event BeginPlay√
+<ul>
+<li>Ctrl_Z 可以撤销删除√</li>
+<li>事件删除后, 以后还可以添加.</li>
+</ul></li>
+</ul>
+
+<p><img src="20230227135619.png" alt="" />  </p>
+
+<ul>
+<li>添加事件的方法: 右键点击空白处, 搜索要添加的事件, 点击就可以添加√</li>
+</ul>
+
+<p><img src="20230227135829.png" alt="" /></p>
+
+<h2>BeginPlay事件研究</h2>
+
+<ul>
+<li>对于BP_Test, 一旦我们开始游戏, 就会执行这个Event BeginPlay事件. 对于新出生(spawn)的actor, 也会在spawn时触发这个事件.</li>
+<li>每个蓝图都可以设置BeginPlay, 使之在游戏开始的时候就按我们的要求行动.</li>
+</ul>
+
+<h3>Print String</h3>
+
+<ul>
+<li>下面的任务是在游戏界面上打印"您好!".
+<ul>
+<li>参考下面的图示, 从Event BeginPlay的引脚拖出一根线√</li>
+<li>搜索Print String动作(action)并选择√</li>
+<li>把 In String 参数设置为您好√</li>
+<li>compile save√</li>
+<li>切换到Map中去执行√</li>
+</ul></li>
+</ul>
+
+<p><img src="20230227140309.png" alt="" /></p>
+
+<p><img src="20230227140324.png" alt="" /></p>
+
+<ul>
+<li>执行时能够看到↓</li>
+</ul>
+
+<p><img src="20230227140403.png" alt="" /></p>
+
+<ul>
+<li><p>如果我们在地图中放置多个BP_Test, 会多次打印 您好!</p></li>
+<li><p>如果我们在Map中添加了很多球, 可以在Map的Outliner中找到添加的BP_Test, 按delete键删除它们√</p></li>
+</ul>
+
+<p><img src="20230227221243.png" alt="" /></p>
+
+<h3>Get World Scale</h3>
+
+<ul>
+<li><p>如果想知道Sphere究竟有多大, 可以使用get world scale方法.</p>
+
+<ul>
+<li>在Details中查看 Sphere 的 scale√</li>
+<li>把Sphere拖到编辑器中; 从引脚中引出Get World Scale√</li>
+<li>连接 Return Value 和 In String√</li>
+<li>展开Development Only, 将持续时间(Duration)设置为5.0秒√</li>
+</ul></li>
+<li><p>注意, 这个 Event Graph 是属于 BP_Test 的. Get World Scale是从Sphere引出的, 因此它的意思是获得 Sphere 在 World 中的 Scale</p></li>
+</ul>
+
+<p><img src="20230227140930.png" alt="" /></p>
+
+<p><img src="20230227140942.png" alt="" /></p>
+
+<ul>
+<li>compile, save. 到地图中Play. 这是一种很好的调试方法√</li>
+</ul>
+
+<p><img src="20230227141104.png" alt="" /></p>
+
+<h2>更改BP的材质(Material)</h2>
+
+<ul>
+<li>下面有多幅图供参考.
+<ul>
+<li>选中Component中的Sphere√</li>
+<li>在Details中导航到Sphere的材质(Material)√</li>
+<li>更改其材质为M<em>Brick</em>Clay<em>New√</li>
+<li>在Map中查看更改效果√</li>
+<li>可以ctrl</em>z把材质再改回BasicShapeMaterial√</li>
+</ul></li>
+</ul>
+
+<p><img src="20230227141304.png" alt="" /></p>
+
+<p><img src="20230227141315.png" alt="" /></p>
+
+<p><img src="20230227141333.png" alt="" /></p>
+
+<h2>Set Material</h2>
+
+<ul>
+<li>回到Event Graph, 我们来用脚本改变材质√</li>
+</ul>
+
+<p><img src="20230227141528.png" alt="" />  </p>
+
+<ul>
+<li>接上图, 在Print String之后, Set Material√</li>
+</ul>
+
+<p><img src="20230227141541.png" alt="" /></p>
+
+<ul>
+<li>Play, 测试一下√</li>
+</ul>
+
+<h3>Construction Script</h3>
+
+<ul>
+<li>Construction Script 让我们不用运行程序就能看到预先做好的蓝图实例, 相当于构造函数。例如, 我们可以用 construction script 更改Sphere的材质, 让我们不用运行程序就能看到材质已经更改的小球.</li>
+</ul>
+
+<p><img src="20230227152926.png" alt="" /></p>
+
+<ul>
+<li>在Even Graph中<code>框选</code>Blueprint代码; ctrl<em>c复制; 然后把复制的内容粘贴(ctrl</em>v)到Construction Script的画布上√</li>
+</ul>
+
+<p><img src="20230227153107.png" alt="" /></p>
+
+<p><img src="20230227192458.png" alt="" /></p>
+
+<ul>
+<li>依照下图改造一下这个BP; Save; Compile√</li>
+</ul>
+
+<p><img src="20230227192524.png" alt="" /> </p>
+
+<ul>
+<li><p>观察: 不用开始游戏, 在编辑器中球就变成金黄色的了。但是看不到Location的三维坐标的显示.</p></li>
+<li><p>打开Output Log, 拖动Sphere的时候, 可以观察到其坐标的改变√</p></li>
+</ul>
+
+<p><img src="20230227192750.png" alt="" /></p>
+
+<blockquote>
+  <p>Construction Script的作用是, 可以预修改Asset的一些属性, 而不是在游戏开始后修改。一个用途是: 让金色的球在空间随机分布; 或者让草木在庭院中随机分布。</p>
+</blockquote>
+
+<h2>Event Tick</h2>
+
+<ul>
+<li><p>Tick事件每帧都会执行. 计算机每秒钟一般能运行30到300帧, 这就是帧率(FPS, Frame Per Second)。执行Tick事件需要时间, 因此为了保证游戏的流畅度, 最好只是在必要的时候才使用Tick。</p></li>
+<li><p>查看游戏的FPS(Frame Per Second)√</p></li>
+</ul>
+
+<p><img src="20230227192941.png" alt="" /></p>
+
+<ul>
+<li>Play, 可以看到游戏的帧率√</li>
+</ul>
+
+<p><img src="20230227193012.png" alt="" /></p>
+
+<h2>Text Color -- 显示有色彩的文本.</h2>
+
+<h3>Random Array Item</h3>
+
+<ul>
+<li>按住 Text Color 前面的引脚, 往左边拖动↓√</li>
+</ul>
+
+<p><img src="20230227193237.png" alt="" /></p>
+
+<ul>
+<li>选择Random Array Item√</li>
+</ul>
+
+<p><img src="20230227193427.png" alt="" /></p>
+
+<p><img src="20230227193502.png" alt="" /></p>
+
+<h3>Make Array</h3>
+
+<ul>
+<li>Make Array√</li>
+</ul>
+
+<p><img src="20230227193611.png" alt="" /></p>
+
+<ul>
+<li>设置颜色
+<ul>
+<li>点击下图所示的方框√</li>
+<li>设置颜色的Value√</li>
+<li>设置饱和度(Saturation)√</li>
+</ul></li>
+</ul>
+
+<p><img src="20230227193733.png" alt="" /></p>
+
+<ul>
+<li><p>点击 Pin, 再增加两个元素; 并设置好颜色和饱和度√</p></li>
+<li><p>连上 Event Tick。Compile, Save。Play√</p></li>
+</ul>
+
+<p><img src="20230227193836.png" alt="" /></p>
+
+<p><img src="20230227193902.png" alt="" /></p>
+
+<ul>
+<li>使用cmd强制把FPS设为5. 可以看到输出Hello的速度明显慢了很多。而且游戏的流畅度感觉也差了很多√</li>
+</ul>
+
+<p><img src="20230227194006.png" alt="" /></p>
+
+<ul>
+<li>将FPS设为0, 恢复到正常状态√</li>
+</ul>
+
+<p><img src="20230227194021.png" alt="" /></p>
+
+<p>(uebp01--第一部分结束)</p>
