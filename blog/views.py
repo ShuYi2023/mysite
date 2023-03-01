@@ -20,3 +20,10 @@ class PostList(generic.ListView):
 class PostDetail(generic.DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        obj.views += 1
+        obj.save()
+        return obj
+
