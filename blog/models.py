@@ -21,9 +21,10 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ['-title']
+        ordering = ['-updated_on']
 
     def __str__(self):
         return self.title

@@ -35,7 +35,7 @@ yauthor = User.objects.get(username=sue_or_max)
 
 file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
              "project": "bp01",
-             "chapter": "ch01",
+             "chapter": "ch02",
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time

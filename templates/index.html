@@ -36,24 +36,67 @@
 </header>
 
 <div class="container">
-    <div class="row">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 left">
+  <div class="row">
+      <!-- Blog Entries Column -->
+    <div class="col-md-8 mt-3 left">
             <!-- 在下面的 for 循环中, 把 post_list 改为 object_list 也可以.
             post_list 名称来源于class PostList(generic.ListView)
             -->
 
-            {% for post in post_list %}
+            {% for post in posts %}
               <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} | updated {{ post.updated_on}} </p>
+                    <p class="card-text text-muted h6">{{ post.author }} | updated {{ post.updated_on}} | 浏览: {{post.views}} </p>
                     <!--  <p class="card-text">{{post.content|slice:":200" }}</p> -->
                     <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
               </div>
             {% endfor %}
+
+    <!-- 页码导航, 网页分页 -->
+    <div class="pagination row">
+      <div class="m-auto">
+        <span class="step-links">
+            <!-- 如果不是第一页，则显示左翻按钮 -->
+            {% if posts.has_previous %}
+                <a href="?page=1" class="btn btn-success">
+                    &laquo; 1
+                </a>
+                <span>...</span>
+                <a href="?page={{ posts.previous_page_number }}" 
+                   class="btn btn-secondary"
+                >
+                    {{ posts.previous_page_number }}
+                </a>
+            {% endif %}
+
+            <!-- 当前页面 -->
+            <span class="current btn btn-danger btn-lg">
+                {{ posts.number }}
+            </span>
+
+            <!-- 如果不是最末页，则显示右翻按钮 -->
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}"
+                   class="btn btn-secondary"
+                >
+                    {{ posts.next_page_number }}
+                </a>
+                <span>...</span>
+                <a href="?page={{ posts.paginator.num_pages }}"
+                   class="btn btn-success"
+                >
+                    {{ posts.paginator.num_pages }} &raquo;
+                </a>
+            {% endif %}
+        </span>
+    </div>
+  </div>        
+
         </div>
+
+
         {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
     </div>
 </div>
