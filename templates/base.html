@@ -1,79 +1,51 @@
 <!DOCTYPE html>
-    {% load static %}
+{% load static %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Check2Get{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+    <!-- 4.5.2 不能用
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel=“stylesheet” href=“https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css”>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    -->
     <link rel="stylesheet" href="{% static 'blog/blog.css' %}">
     <link rel="stylesheet" href="{% static 'blog/prism.css' %}">
-
+            
 </head>
 
+
 <body>
-    <style>
-        body {
-            font-family: "Roboto", sans-serif;
-            font-size: 17px;
-            /*background-color: #fdfdfd;*/
-            background-color: #f0f0f0;
-        }
-        .shadow {
-            box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
-        }
-        .btn-danger {
-            color: #fff;
-            background-color: #f00000;
-            border-color: #dc281e;
-        }
-        .masthead {
-            background: #3398E1;
-            height: auto;
-            padding-bottom: 15px;
-            box-shadow: 0 16px 48px #E3E7EB;
-            padding-top: 10px;
-        }
-    </style>
+    <!-- 头部 导航 about admin contact 等 -->
+    {% include 'header.html' %}
 
-        <!-- 导航 about admin contact 等 -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
-            <div class="container-fluid">
-                
-                <a class="navbar-brand" href="{% url 'home' %}">Check2Get</a>
+    <!-- 文章的content -->    
+    {% block content %}
+    {% endblock content %}
 
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <!-- 脚部 Footer -->
+    {% include 'footer.html' %}
 
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">About</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="http://127.0.0.1:8000/admin/">admin</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <!-- ↓ 必要的js文件, 通常jquery要最先引入 
+    <script src="{% static 'jquery/jquery-3.6.3.js' %}"></script>
+    <script src=“https://code.jquery.com/jquery-3.2.1.slim.min.js”></script>
+    <script src=“https://code.jquery.com/jquery-3.5.1.slim.min.js”></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src=“https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js”></script>
+    <script src=“https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js”></script>
+    -->
 
-        {% block content %}
-        {% endblock content %}
+    <script src="{% static 'jquery/jquery-3.6.3.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1-lts/dist/umd/popper.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/script.js' %}"></script>
+    <script src="{% static 'blog/prism.js' %}"></script>
 
-        <!-- Footer -->
-        <footer class="py-3 bg-grey">
-            <p class="m-0 text-dark text-center ">Copyright &copy; Shu and Max</p>
-        </footer>
-        <script src="{% static 'blog/script.js' %}"></script>
-        <script src="{% static 'blog/prism.js' %}"></script>
 </body>
 
 </html>

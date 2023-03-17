@@ -9,7 +9,9 @@ import random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 from django.contrib.auth.models import User
-from blog.models import Post
+# from blog.models import Post
+from article.models import ArticlePost
+
 from django.utils import timezone
 
 
@@ -33,16 +35,17 @@ sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
 sue_or_max=random.choice(['max','ShuYi'])
 yauthor = User.objects.get(username=sue_or_max)
 
-file_meta = {"section": "ue", # ue, u3d, tailwind, python, ksp
-             "project": "bp01",
-             "chapter": "ch02",
+file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
+             "project": "001",
+             "chapter": "ch08",
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time
              # "created_on": timezone.now(),
-             "content": "", # text
+             # "content": "", # text
+             "body": "", # text
              "level": "beginner",
-             "status": 1,  # integer
+             # "status": 1,  # integer
              }
 
 # 创建或者查找output_path, 用于读取和保存文件
@@ -151,14 +154,15 @@ with open(html_output_path, 'r', encoding='UTF-8') as f:
     text_for_post = f.read()
 
 # 在数据库中更新或者创建新的内容
-file_meta["content"] = text_for_post
+# file_meta["content"] = text_for_post
+file_meta["body"] = text_for_post
 file_meta["title"] = result
 
 yslug = file_meta["section"] + file_meta["project"] + file_meta["chapter"]
 
 slug_exist = True  # 先假设slug存在
 try:
-    yfind = Post.objects.get(slug=yslug)
+    yfind = ArticlePost.objects.get(slug=yslug)
 except:
     slug_exist = False  # 如果找不到slug, 设置slug_exist为不存在
 
@@ -168,7 +172,7 @@ if slug_exist:
         print("你选择了不覆盖, 程序退出")
         exit(0)
 
-obj, created = Post.objects.update_or_create(
+obj, created = ArticlePost.objects.update_or_create(
     slug = yslug,
     defaults = file_meta
     )

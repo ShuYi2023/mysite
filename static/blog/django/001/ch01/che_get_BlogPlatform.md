@@ -1,4 +1,4 @@
-# blog文章编辑规范
+# blog文章Markdown格式编辑规范01
 
 ## 文章用Markdown格式写
 * 请在vscode用Markdown格式写blog文章√

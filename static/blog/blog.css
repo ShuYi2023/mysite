@@ -165,18 +165,6 @@ a {
     text-decoration:none;
 }
 
-a:link {
-    /*color:#fca205;*/
-    /*color:#76a005;*/
-    color:rgb(13,146,63);
-}
-
-a:visited {
-    /*color:#fca205;*/
-    /*color:#7d00ad;*/
-    color:rgb(13,146,63);
-}
-
 a:hover {
     /*color:yellow;*/
     color:blue;

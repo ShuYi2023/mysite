@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'comment',
+    'article',
 ]
 
 MIDDLEWARE = [
@@ -118,8 +119,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+# 在开发阶段要用到 STATIC_URL, 用于告诉服务器到哪里找到静态文件, 
+# templates中的{% load static %}以及 src="{% static 'blog/script.js' %}" 与这个目录有关
 STATIC_URL = 'static/'
 
+# 在生产阶段, 要用到 STATICFILES_DIRS, 服务器把这里的文件, 通过collectstatics命令放到STATIC_ROOT目录中去
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     # '/var/www/static/',

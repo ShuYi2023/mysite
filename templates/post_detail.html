@@ -26,12 +26,61 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3 left top">
+
         <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
         <p class=" text-muted">{{ post.author }} | updated on {{ post.updated_on }} | 浏览: {{post.views}} </p>
+
         <div data-content>
           <div style="background-color: #f0f0f0;" >{{ object.content | safe }}</div>
         </div>
+
+        <!-- 发表评论 -->
+        <div>
+          <form 
+              action="{% url 'comment:post_comment' post.slug %}" 
+              method="POST">
+              {% csrf_token %}
+
+              <div class="form-group">
+                  <label for="body">
+                      <strong>
+                          我要评论：
+                      </strong>
+                  </label>
+                  <textarea 
+                      type="text" 
+                      class="form-control" 
+                      id="body"
+                      name="body"
+                      rows="2">
+                  </textarea>
+              </div>
+
+              <!-- 提交按钮 -->
+              <button type="submit" class="btn btn-primary ">发送</button>                    
+          </form>
+        </div>
+
+        <!-- 显示评论 -->
+        <h4>共有{{ comments.count }}条评论</h4>
+        <div>
+            {% for comment in comments %}
+                <hr>
+                <p>
+                    <strong style="color: pink">
+                        {{ comment.user }}
+                    </strong> 于 
+                    <span style="color: green">
+                        {{ comment.created|date:"Y-m-d H:i:s" }}
+                    </span> 时说：
+                </p>
+                <pre style="font-family: inherit; font-size: 1em;">
+                  {{ comment.body }}
+                </pre>
+            {% endfor %}
+        </div>
     </div>
+
 
     <!-- sidebar 放置文章的TOC-->
     <div class="col-md-4 card mb-4 mt-3 right top">
