@@ -8,4 +8,5 @@ urlpatterns = [
     path('article-detail/<slug:slug>', views.article_detail, name='article_detail'),
     path('article-create/', views.article_create, name='article_create'),
     path('article-delete/<slug:slug>/', views.article_delete, name='article_delete'),
+    path('article-update/<slug:slug>/', views.article_update, name='article_update'),
 ]
