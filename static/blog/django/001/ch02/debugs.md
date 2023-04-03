@@ -8,3 +8,6 @@
 ## 以前的汇总放在这个链接
 * https://sevenmars.feishu.cn/docx/Lm7RdZOT8oxjNkxaSebc8xNFnfz
 
+## 怎么理解base.html和list.html呢
+* base.html中留了很多 block--endblock, 这些block要在list.html中定义.
+

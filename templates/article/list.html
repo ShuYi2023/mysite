@@ -27,7 +27,8 @@
                 </div>
                 <!-- 注脚 -->
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">阅读本文</a>
+                    <!-- ↓ 用 url 功能合成文章的链接 -->
+                    <a href="{% url 'article:article_detail' article.slug %}" class="btn btn-primary">阅读本文</a>
                 </div>
             </div>
         </div>
