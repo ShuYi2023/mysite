@@ -24,7 +24,8 @@ def convert_markdown_to_html(input_file, output_file):
 
 def clear_em(raw_code_block):
     new_code_block = raw_code_block
-    for dirty_tag in [r'<em>', r'</em>', r'<p>', r'</p>', r'```python', r'```']:
+    # <p><code>(.*?)</code></p>
+    for dirty_tag in [r'<em>', r'</em>', r'<p>', r'</p>', r'python']:
         new_code_block = new_code_block.replace(dirty_tag, '')
     return new_code_block
 
@@ -116,18 +117,23 @@ for img_name in img_name_list:
 
 # *** 查找代码块
 # <pre><code class="language-javascript">const variable = "Here's some JavaScript";</code></pre>
-ypattern= r'```.*?```'
-code_blocks = re.findall(ypattern, text_for_post, flags=re.DOTALL)
+# ypattern= r'```(.*?)```'
+ypattern = r'<p><code>(.*?)</code></p>'  # 找出的东西不包括<p><code>, </code></p>
+code_blocks = re.findall(ypattern, text_for_post, re.DOTALL)
 new_text_begin_py = r'<pre><code class="language-python">'  # python是_py, 其他代码请修改
 new_text_end = r'</code></pre>'
 
 for code_block in code_blocks:
     if 'python' in code_block:
-        code_block2 = clear_em(code_block)
-        code_block2.strip()
-        new_text = new_text_begin_py + code_block2 + new_text_end
+        new_code_block = clear_em(code_block)
+        new_code_block.strip()
+        new_text = new_text_begin_py + new_code_block + new_text_end
         text_for_post = text_for_post.replace(code_block, new_text)
         text_for_post = text_for_post.strip()
+        text_for_post = text_for_post.replace(r'<p><code>', '')  # 要去除整个文章中的<p><code>
+        text_for_post = text_for_post.replace(r'</code></p>', '')  # 要去除整个文章中的</code></p>
+    # if other language
+
 
 
 # ***写入到本地的的 output_for_post.html
