@@ -1,7 +1,5 @@
-
-def convertmarkdowntohtml(inputfile, outputfile):
-    with open(inputfile, 'r') as file:
-        markdowntext = file.read()
-    htmltext = markdown2.markdown(markdowntext)
-    with open(outputfile, 'w') as file:
-        file.write(html_text)
+赛拔信息科技（上海）有限公司
+* 开户名称：赛拔信息科技（上海）有限公司
+* 开户银行：招商银行上海淮中支行
+* 开户帐号：121940014010106
+* 统一社会信用代码：9131 0113 MA1G PMN5 70
