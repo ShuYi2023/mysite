@@ -76,7 +76,7 @@ for i in range(len(md_list)):
     print(f'{i}-{md_list[i]}')
 j = int(input("请选择要处理的文件的序号: "))
 
-ymd_path = os.path.join(output_path, md_list[i])
+ymd_path = os.path.join(output_path, md_list[j])
 
 # *** 将md文件转化为html文件
 html_output_path = os.path.join(output_path, 'output_stage1.html')
@@ -117,8 +117,8 @@ for img_name in img_name_list:
 
 # *** 查找代码块
 # <pre><code class="language-javascript">const variable = "Here's some JavaScript";</code></pre>
-# ypattern= r'```(.*?)```'
-ypattern = r'<p><code>(.*?)</code></p>'  # 找出的东西不包括<p><code>, </code></p>
+ypattern= r'```(.*?)```'
+# ypattern = r'<p><code>(.*?)</code></p>'  # 找出的东西不包括<p><code>, </code></p>
 code_blocks = re.findall(ypattern, text_for_post, re.DOTALL)
 new_text_begin_py = r'<pre><code class="language-python">'  # python是_py, 其他代码请修改
 new_text_end = r'</code></pre>'
@@ -130,8 +130,10 @@ for code_block in code_blocks:
         new_text = new_text_begin_py + new_code_block + new_text_end
         text_for_post = text_for_post.replace(code_block, new_text)
         text_for_post = text_for_post.strip()
-        text_for_post = text_for_post.replace(r'<p><code>', '')  # 要去除整个文章中的<p><code>
-        text_for_post = text_for_post.replace(r'</code></p>', '')  # 要去除整个文章中的</code></p>
+        # text_for_post = text_for_post.replace(r'<p><code>', '')  # 要去除整个文章中的<p><code>
+        # text_for_post = text_for_post.replace(r'</code></p>', '')  # 要去除整个文章中的</code></p>
+        text_for_post = text_for_post.replace(r'```', '')  # 去掉三个backtip ```
+
     # if other language
 
 

@@ -10,6 +10,8 @@
 
 html {
     font-size:100%;
+    /* background-color: #f2f2f2; */
+    /* background-color: #568493; */
     /*谷歌浏览器最小字号是12啊*/
     /*在根元素定义rem为10px （16*62.5%）行不通*/
     /*box-sizing:border-box;*/
@@ -105,62 +107,6 @@ header{
     display:flex;
 }
 
-p {
-    display: block;
-    /*margin-bottom:2rem;*/
-    /*padding-top:0.3rem;*/
-    /*padding-bottom:0.3rem;*/
-}
-
-
-.yiji {
-    color:#449240;
-    background-color:#f6f6f7;
-    /*color:#fff;#449240;*/
-    /*background:linear-gradient(lightgreen,#449240);*/
-    font-size:1.25rem;/*20px*/
-    /*text-align: center;*/
-    padding-left:1rem;
-    -webkit-margin-before: 3rem;
-    -webkit-margin-after: 1.2rem;
-    -webkit-margin-start: 0rem;
-    -webkit-margin-end: 0rem;
-
-}
-
-.erji {
-    /*display:inline-block;*/
-    color:black;
-    font-size:1.125rem;/*16px*/
-    padding-left:1.5rem;
-    line-height:1.8rem;
-    -webkit-margin-before: 0.75rem;
-    -webkit-margin-after: 0.75rem;
-    -webkit-margin-start: 0rem;
-    -webkit-margin-end: 0rem;
-    /*padding-top:0.2em;*/
-    /*padding-bottom:0.2em;*/
-}
-
-.sjji {
-    color:rgb(244, 10, 212);
-    font-size:1rem;
-    padding-left:2.5rem;
-    /*background-color:rgb(247,247,247);*/
-    color:black;
-    -webkit-margin-before: 0.75rem;
-    -webkit-margin-after: 0.75rem;
-    -webkit-margin-start: 0rem;
-    -webkit-margin-end: 0rem;
-
-}
-
-h3 {
-    font-size: 1.2rem;
-    color:rgb(62, 9, 237);
-    padding-left: 1.5rem;
-}
-
 a {
     text-decoration:none;
 }
@@ -192,10 +138,35 @@ a:hover {
 }
 
 
+h1 {
+    /*color:#FCA205;*/
+    color:#333333;
+    font-size:2rem;
+}
+
 h2 {
     /*color:#FCA205;*/
-    color:#0d923f;
-    font-size:1.5rem;
+    color:#1e90ff;
+    font-size:1.6rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    /*color:#e57373;*/
+    padding-left: 0.5rem;
+    color:cadetblue
+}
+
+p {
+    font-size: 18px;
+    display: block;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+ul {
+    font-size: 18px;
 }
 
 .ytitle {
@@ -239,10 +210,11 @@ img {
     max-width:85%;
 }
 
+/*
 img:hover {
     transform: scale(1.1);
 }
-
+*/
 
 header {
     /*height:3rem;*/

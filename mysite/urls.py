@@ -23,4 +23,6 @@ urlpatterns = [
     # 下面的path 要在makemigrations和migrate之后再添加, 否则报错 No module named 'comment.urls
     path('article/', include('article.urls', namespace='article')),
     path('comment/', include('comment.urls', namespace='comment')),
+    # 用户管理
+    path('userprofile/', include('userprofile.urls', namespace='userprofile')),
 ]
