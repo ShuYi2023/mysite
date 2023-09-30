@@ -1,4 +1,5 @@
 # Max input
+sftpSingleFile*.py
 .idea/
 .DS_store
 /.idea/
@@ -145,3 +146,4 @@ blog/__pycache__/__init__.cpython-310.pyc
 .vscode/settings.json
 mysite/__pycache__/*.pyc
 blog/__pycache__/*.pyc
+sftpTo244v2.py

@@ -18,7 +18,7 @@ remote_path = '/etc/nginx/sites-available/mysite_ng_config'  # *** 远端的绝�
 r_dir, r_fullfname = os.path.split(remote_path)
 fname, fext = os.path.splitext(r_fullfname)
 
-hostname = '192.168.0.244'
+hostname = '192.168.1.244'
 port = 22
 
 username = 'max'

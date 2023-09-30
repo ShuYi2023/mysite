@@ -119,7 +119,7 @@ class SSH(object):
 
         return all_files
 
-    def sftp_put_dir(self, local_dir):
+    def sftp_put_dir(self, local_dir, remote_dir):
         try:
             sftp = paramiko.SFTPClient.from_transport(self.t)
             '''
@@ -140,7 +140,7 @@ class SSH(object):
                     # os.popen('mkdir -p %s' % remote_path)
                     self.execute_cmd('mkdir -p %s' % remote_path) # 使用这个远程执行命令
 '''
-                sftp.put(local_dir + file, '/' + file)
+                sftp.put(local_dir + file, remote_dir + file)
                 print("end put")
 
         except:
@@ -175,14 +175,17 @@ class SSH(object):
 
 
 if __name__ == "__main__":
-    ssh = SSH(ip='121.36.23.121', username='root', password='1111')  # 创建一个ssh类对象
+    ssh = SSH(ip='192.168.1.244', username='max', password='8092')  # 创建一个ssh类对象
     ssh.connect()  # 连接远程服务器
     print("connect successful!")
     #    cmd = 'ls -lh'
     #    ssh.execute_cmd(cmd)  # 执行命令
     #    remotefile, local_file = 'xxx', 'xxx'
     #    ssh.sftp_get(remotefile, local_file)  # 下载文件
-    remotedir, localdir = '/', 'C:\MyFile\Pictures\share\\'
-    ssh.sftp_put_dir(localdir)  # 上传文件夹
+    # remotedir, localdir = '/', 'C:\MyFile\Pictures\share\\'
+    local_dir = '/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite/'
+    remote_dir = '~/mysite/'
+
+    ssh.sftp_put_dir(local_dir, remote_dir)  # 上传文件夹
 
     ssh.close()

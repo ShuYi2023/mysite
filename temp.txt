@@ -1,11 +1,22 @@
-@All 各位学员和家长，由于端午节调休, 我们的课程也前移一天, 周六的课前移到本周五, 周日的课前移到本周六。
+# Ubuntu
+sudo apt update && sudo apt install software-properties-common
+sudo add-apt-repository ppa:trzsz/ppa && sudo apt update
+sudo apt install trzsz
 
-    周五周六的课, 也是我们的最后一次课。我们将继续在微软公司《我的世界--教育版》中进行“期末测验”
+# Debian
+sudo apt install curl gpg
+curl -s 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x7074ce75da7cc691c1ae1a7c7e51d1ad956055ca' \
+    | gpg --dearmor -o /usr/share/keyrings/trzsz.gpg
+echo 'deb [signed-by=/usr/share/keyrings/trzsz.gpg] https://ppa.launchpadcontent.net/trzsz/ppa/ubuntu jammy main' \
+    | sudo tee /etc/apt/sources.list.d/trzsz.list
+sudo apt update
+sudo apt install trzsz
 
-    回顾两个学期的火星计划，我们实现了无人驾驶登月、领略了牛顿力学和开普勒定律的美感、亲身体验到了数学蕴含的强大的力量; 我们还尝试了Anaconda/Pycharm/VSCode/JupyterLab等常用的Python编程工具; 我们围绕着程序调试这个核心, 锻炼了编程能力和"侦探"心态; 我们还小试了游戏开发圈中著名的Unreal Engine引擎; 寒假之后, ChatGPT横空出世, 我们也亲自体验了它强大的编程能力; 在最后的技能测试中, 我们通过高手的关卡创作, 发现教育其实可以很有趣。我们在目睹技术日新月异地发展, 我相信未来最重要的能力是自学能力和创新能力。
+# CentOS
+echo '[trzsz]
+name=Trzsz Repo
+baseurl=https://yum.fury.io/trzsz/
+enabled=1
+gpgcheck=0' | sudo tee /etc/yum.repos.d/trzsz.repo
 
-    希望学员们继续保持学习干劲、对科技的热爱、对世界的好奇心, 关注前沿技术的发展, 享受探索带来的乐趣。
-
-    虽然有了GPT, 编程老师们都可以退休了, 但碰到解决不了的困难的时候, 也别忘了可以找Max老师一起讨论。
-    
-    提前说一句: 学海无涯, 后会有期!
+sudo yum install trzsz
