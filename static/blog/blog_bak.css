@@ -7,9 +7,6 @@
 @tailwind utilities;
 */
 
-::selection {
-    background-color: #eee;
-}
 
 html {
     font-size:100%;
