@@ -27,7 +27,7 @@ class PostList(generic.ListView):
 def post_list(request):
     post_list = Post.objects.all()
 
-    paginator = Paginator(post_list, 2)
+    paginator = Paginator(post_list, 3)
 
     page = request.GET.get('page')
 

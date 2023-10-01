@@ -18,10 +18,15 @@ def article_list(request):
 
 # 文章详情
 def article_detail(request, slug):
+    """
+    从数据库中取出文章, 判断文章是Markdown格式, 还是HTML格式。
+    如果是HTML格式, 则不改动。
+    如果是Markdown格式, 则用Markdown模块解析成HTML
+    """
 
     article = ArticlePost.objects.get(slug=slug)
 
-    if '</h2>' in article.body:
+    if '</h2>' in article.body: # 如果文章中已经有html标签了, 就不转换
         context = {"article": article}
         return render(request, 'article/detail.html', context)
 
@@ -32,7 +37,7 @@ def article_detail(request, slug):
         # 包含 缩写、表格等常用扩展
         'markdown.extensions.extra',
         # 语法高亮扩展
-        # 'markdown.extensions.codehilite',
+        'markdown.extensions.codehilite',
         ])
 
         context = {"article": article}

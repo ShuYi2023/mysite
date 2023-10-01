@@ -1,0 +1,292 @@
+<ul>
+<li>建议准备一个 Pad, 用Pad看教程, 用Mac或者PC实际操作.    </li>
+<li>英文不太好的同学, 不建议学习本课程.</li>
+</ul>
+<h2>1.项目最终结果演示</h2>
+<p>(在电脑上演示, 或者贴一个视频)</p>
+<h2>2.安装和打开Unreal Engine 5</h2>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >001</span > </span >安装和打开Unreal Engine 5; 创建一个名为<code>LearnBP</code>的项目。<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >002</span > </span >本教程在呈现内容的时候, 通常分两部分: 文字说明 + 图片。图片常常不止只有一个, 所以要看全部的图片哦。</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png|750" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084346.png" /></p>
+<p><img alt="image.png|550" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084433.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >003</span > </span >Play一下. Esc退出Play。</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084510.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084531.png" /></p>
+<h2>3.创建一个Blueprint</h2>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >004</span > </span >打开content drawer.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084906.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >005</span > </span >添加一个文件夹, 取名Blueprints. </li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084941.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924084948.png" /></p>
+<ul>
+<li>理解一下UE中文件夹的层级。在UE中, 下图是项目的根目录, Content目录以及项目的.uproject文件。 #flashcard
+<img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924110608.png" /></li>
+</ul>
+<!--ID: 1695545559562-->
+
+<h3>在文件夹中添加一个 Blueprint</h3>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >006</span > </span >右键点击 Blueprints 文件夹, 然后按照下图选择 <code>Add/Import Content</code>, 再选择 <code>Blueprint Class</code>.</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924090953.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >007</span > </span >选择 Actor作为这个 Blueprint的<code>父类</code>.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091105.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >008</span > </span >把新建的 Blueprint 改名为 <code>BP_Test</code>.</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091134.png" /></p>
+<ul>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >009</span > </span >在文件夹中双击 BP_Test 打开这个蓝图进行编辑。</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >010</span > </span >把 BP_Test 标签页(tab)拖到ThirdPersonMap旁边。</p>
+</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091230.png" /></p>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091244.png" /></p>
+<h3>给蓝图添加一个球体.</h3>
+<p>我们可以把蓝图理解为{ 蓝图 = 形状 + 逻辑 = 外形 + 思想 }。外形有Shpere等样子, 逻辑用<code>Event Graph</code>管理。</p>
+<!--ID: 1695545559533-->
+
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >011</span > </span >在 Components 下面选中BP_Test; 点击Add, 输入sphe, 从提示中选择Sphere; 别选成 Sphere Collision 了.</li>
+</ul>
+<p><img alt="image.png|250" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091315.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091343.png" /></p>
+<ul>
+<li>添加 Sphere 之后, Components 下面是这样。</li>
+</ul>
+<p><img alt="image.png|550" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091427.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >012</span > </span >compile, save.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091452.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091501.png" /></p>
+<ul>
+<li>切换到<code>ThirdPersonMap</code>; 把BP拖到<code>ThirdPersonMap</code>中.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091555.png" /></p>
+<h2>4.修改BP</h2>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >013</span > </span >设置BP的大小。点击 <code>BP_Test</code> 标签, 回到BP_Test蓝图界面; 选中Sphere; 找到Details标签; 把Scale的(x, y, z)的值都设置为0.5。这样能够把球体变小。</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091623.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >014</span > </span >在 Details 中找到 Simulate Physics(模拟物理), 勾选.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924091643.png" /></p>
+<ul>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >015</span > </span >compile, save</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >016</span > </span >回到地图, Play, 这时的球应该可以踢了。</p>
+</li>
+</ul>
+<h2>5.Event Graph</h2>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >017</span > </span >找到 <code>BP_Test</code> 的<code>Event Graph</code> 标签, 点击, 切换到Event Graph画面. (在<strong>画布</strong>的空白处按住鼠标右键不放, 可以拖动整个画布)</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924112732.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >018</span > </span >删除事件 <code>Event BeginPlay</code>. (不用担心, 以后还可以添加上去。另外, Ctrl + Z 可以撤销删).</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924113008.png" /></p>
+<ul>
+<li>添加事件的方法: 右键点击空白处, 搜索要添加的事件node. 也可以移动node.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924113155.png" /></p>
+<h2>6.<code>BeginPlay</code>事件研究</h2>
+<ul>
+<li>对于<code>BP_Test</code>这个蓝图, 一旦我们开始游戏, 就会执行这个<code>Event BeginPlay</code>事件. 对于新出生(spawn)的actor, 也会在spawn时候触发这个事件.</li>
+</ul>
+<h3><strong><code>Print String</code></strong>, 下面的任务是在游戏界面上打印"您好!".</h3>
+<ul>
+<li>
+<p>参考下面的图示, 从<code>Event BeginPlay</code>的引脚拖出一根线;</p>
+<ul>
+<li>
+<p>搜索<code>Print String</code>动作(action)并选择;</p>
+</li>
+<li>
+<p>把 <code>In String</code> 参数设置为<code>您好!</code>;</p>
+</li>
+<li>
+<p>compile save ;</p>
+</li>
+<li>
+<p>切换到Map中去执行.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924113515.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924113541.png" /></p>
+<blockquote>
+<p>In String要和<code>Print String</code>连起来看, 所以是Print &lt;变量&gt; In String. 这个函数把"您好!"变成String类型之后, 再打印。</p>
+</blockquote>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >019</span > </span >执行时能够看到</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924113908.png" /></p>
+<ul>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >020</span > </span >在地图中放置多个BP_Test, 会多次打印<code>您好!</code>。</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >021</span > </span >在Map的<code>Outliner</code>中找到添加的BP_Test, 按delete键删除它们. (由于内容很多, 建议多用Search功能)</p>
+</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924114043.png" /></p>
+<h3>Get World Scale 获得世界的大小</h3>
+<ul>
+<li>
+<p>在Details中查看 Sphere 的 scale;</p>
+<ul>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >022</span > </span >把Sphere拖到编辑器中; 从引脚中引出<code>Get World Scale</code>;</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >023</span > </span >连接 Return Value 和 In String;</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >024</span > </span >展开<code>Development Only</code>, 将持续时间(Duration)设置为5.0秒.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924114900.png" /></p>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924114929.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >025</span > </span >compile save. 到地图中Play. 这是一种很好的调试方法。</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924115226.png" /></p>
+<h3>Get World Scale的解释如下。</h3>
+<ul>
+<li>在<code>Get World Scale</code>中需要填入一个Target变量, 这个变量由Sphere填入, 整个函数的意思是{获得 Sphere 在 World 中的 Scale}。我们看函数的方法通常是: 函数的名字, 名字通常就表明的这个函数能实现什么功能, 然后看执行函数需要什么变量。然后, 给变量赋值。另外要注意, 这个 <code>Event Graph</code> 是属于 <code>BP_Test</code> 的.
+<img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924115057.png" /></li>
+</ul>
+<!--ID: 1695545559556-->
+
+<h2>7.更改BP的材质(Material)</h2>
+<ul>
+<li>更改蓝图中某个物体或者形状的材质<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >026</span > </span >选中<code>Component</code>中的<code>Sphere</code>,</li>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >027</span > </span >在Details中导航到Sphere的材质(Material);</li>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >028</span > </span >更改其材质为<code>M_Brick_Clay_New</code>;</li>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >029</span > </span >在Map中查看更改效果; 以后可以把材质再改回BasicShapeMaterial。</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924115828.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924115835.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924115844.png" /></p>
+<h3>Set Material</h3>
+<ul>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >030</span > </span >回到蓝图的Event Graph, 我们来用脚本改变材质.
+<img alt="image.png|550" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924120340.png" /></p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >031</span > </span >接上图, 在Print String之后, <code>Set Material</code> </p>
+</li>
+</ul>
+<p><img alt="image.png|550" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924120426.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >032</span > </span >Play, 测试一下. 可见<code>Set Material</code>也是一个高层级的静态函数, 或者说全局函数。</li>
+</ul>
+<h2>8.Construction Script</h2>
+<p>Construction Script相当于构造函数。在 <code>construction script</code> 中也可以更改Sphere的材质。 <code>construction script</code>类似构造函数. 可以预先做出蓝图的实例.</p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924120700.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >033</span > </span >在Even Graph页面框选Blueprint代码; ctrl+c复制; 拷贝到Construction Script的画布上.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924120808.png" /></p>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924120819.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >034</span > </span >依照下图改造一下这个BP; Save; Compile.</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924120938.png" /></p>
+<ul>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >035</span > </span >观察. 发现不用开始游戏, 在编辑器中球就变成金黄色的了。但是看不到Location的三维坐标的显示.</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >036</span > </span >打开Output Log, 拖动Sphere的时候, 可以观察到其坐标的改变.</p>
+</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121102.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >037</span > </span >Construction Script的作用是, 可以预修改Asset的一些属性, 而不是在游戏开始后修改。一个用途是: 让金色的球在空间随机分布; 或者让草木在庭院中随机分布。</li>
+</ul>
+<h2>9.Event Tick</h2>
+<ul>
+<li>
+<p>Tick事件每帧都会执行. 计算机每秒钟一般能运行30到300帧, 这就是帧率(FPS, Frame Per Second)。执行Tick事件需要时间, 因此为了保证游戏的流畅度, 最好只是在必要的时候才使用Tick。</p>
+</li>
+<li>
+<p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >038</span > </span >查看游戏的FPS(Frame Per Second).</p>
+</li>
+</ul>
+<p><img alt="image.png|250" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121259.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >039</span > </span >Play, 可以看到游戏的帧率.</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121400.png" /></p>
+<h2>10.Text Color -- 显示有色彩的文本.</h2>
+<h3>Random Array Item</h3>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >040</span > </span >按住 Text Color 前面的引脚, 往<code>左边</code>拖动.</li>
+</ul>
+<p><img alt="image.png|350" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121519.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >041</span > </span >选择<code>Random Array Item</code>.</li>
+</ul>
+<p><img alt="image.png|350" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121635.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121643.png" /></p>
+<h3>Make Array</h3>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >042</span > </span >Make Array
+<img alt="image.png|350" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121934.png" /></li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924121941.png" /></p>
+<ul>
+<li>设置颜色<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >043</span > </span >点击下图所示的方框,</li>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >044</span > </span >设置颜色的Value,</li>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >045</span > </span >设置饱和度(Saturation).</li>
+</ul>
+</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924122228.png" /></p>
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >046</span > </span >点击Add Pin, 再增加两个数组元素[1]和[]2; 并设置好颜色和饱和度.</li>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >047</span > </span >连上<code>Event Tick</code>。Compile, Save。Play。</li>
+</ul>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924122323.png" /></p>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924122331.png" /></p>
+<ul>
+<li>使用cmd强制把FPS设为5. 可以看到输出Hello的速度明显慢了很多。而且游戏的流畅度感觉也差了很多.</li>
+</ul>
+<p><img alt="image.png|550" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924122615.png" /></p>
+<ul>
+<li>将FPS设为0, 恢复到正常状态。</li>
+</ul>
+<p><img alt="image.png|450" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924122636.png" /></p>
+<h2>(Optional)</h2>
+<h3>用5.3版本打开5.1版本, 为了节省空间, 可以conversion #flashcard</h3>
+<p><img alt="image.png|650" src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230924105416.png" /></p>
+<!--ID: 1695545559567-->
