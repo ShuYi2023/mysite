@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-{% load static %}
+{% load static i18n %}<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,7 +20,7 @@
 
 
 <body>
-    <!-- 头部 导航 about admin contact 等 -->
+    <!-- 头部 导航 about admin contact 等, Django会直接在templates/文件夹中寻找header.html -->
     {% include 'header.html' %}
 
     <!-- 文章的content -->    

@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # 访问的时候, slash不能省略, localhost:8000/admin/
-    path('', include('blog.urls')),
+    # path('', include('blog.urls')),
     # 下面的path 要在makemigrations和migrate之后再添加, 否则报错 No module named 'comment.urls
     path('article/', include('article.urls', namespace='article')),
     path('comment/', include('comment.urls', namespace='comment')),

@@ -25,13 +25,13 @@
                 <div class="card-body">
                     <p class="card-text">
                         {{ article.body|striptags|slice:'100' }}...
-                        <a href="{% url 'article:article_detail' article.slug %}">阅读</a>
+                        <a href="{% url 'article:article_detail' article.id %}">阅读</a>
                     </p>
                 </div>
                 
                 <!-- 注脚 用 url 功能合成文章的链接 
                 <div class="card-footer">
-                    <a href="{% url 'article:article_detail' article.slug %}" class="btn btn-primary">阅读本文</a>
+                    <a href="{% url 'article:article_detail' article.id %}" class="btn btn-primary">阅读本文</a>
                 </div>
                 -->
 

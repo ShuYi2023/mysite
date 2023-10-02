@@ -23,7 +23,7 @@ class ArticlePost(models.Model):
     # slug = models.SlugField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200)
     # status = models.IntegerField(choices=STATUS, default=0)
-    # views = models.PositiveIntegerField(default=0)
+    views = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['-updated_on']
@@ -32,6 +32,7 @@ class ArticlePost(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse('article:article_detail', args=[self.slug])
+        # return reverse('article:article_detail', args=[self.slug])
+        return reverse('article:article_detail', args=[self.id])
     
 

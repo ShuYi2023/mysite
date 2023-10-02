@@ -7,6 +7,7 @@ import markdown  # 用于处理 Markdown 格式
 import random
 import re
 import datetime
+from comment.models import Comment
 
 # 文章列表
 def article_list(request):
@@ -17,19 +18,25 @@ def article_list(request):
     return render(request, 'article/list.html', context)
 
 # 文章详情
-def article_detail(request, slug):
+# def article_detail(request, slug):
+def article_detail(request, id):
     """
     从数据库中取出文章, 判断文章是Markdown格式, 还是HTML格式。
     如果是HTML格式, 则不改动。
     如果是Markdown格式, 则用Markdown模块解析成HTML
     """
 
-    article = ArticlePost.objects.get(slug=slug)
+    # article = ArticlePost.objects.get(slug=slug)
+    article = ArticlePost.objects.get(id=id)
+
+    article.views += 1
+    # art_id = article.id
+    # comments = Comment.objects.filter(slug=slug)
+    comments = Comment.objects.filter(article=id)
+
 
     if '</h2>' in article.body: # 如果文章中已经有html标签了, 就不转换
-        context = {"article": article}
-        return render(request, 'article/detail.html', context)
-
+        pass
     # 如果body中没有html标签, 表明是Markdown格式的文件↓
     else:
         article.body = markdown.markdown(article.body,
@@ -40,8 +47,12 @@ def article_detail(request, slug):
         'markdown.extensions.codehilite',
         ])
 
-        context = {"article": article}
-        return render(request, 'article/detail.html', context)
+    article.save()
+    # context = { 'article': article, 'toc': md.toc, 'comments': comments }
+    context = { 'article': article, 'comments': comments }
+    return render(request, 'article/detail.html', context)
+    #return render(request, 'post_detail.html', context)
+
 
 def article_create(request):
     # 判断用户是否提交数据
@@ -75,14 +86,14 @@ def article_create(request):
         context = {'article_post_form': article_post_form}
         return render(request, 'article/create.html', context)
 
-def article_delete(request, slug):
-    article = ArticlePost.objects.get(slug=slug)
+def article_delete(request, id):
+    article = ArticlePost.objects.get(id=id)
     article.delete()
     return redirect("article:article_list")
 
-def article_update(request, slug):
+def article_update(request, id):
     """本函数用于修改文章"""
-    article = ArticlePost.objects.get(slug=slug)
+    article = ArticlePost.objects.get(id=id)
 
     if request.method=="POST":
         article_post_form = ArticlePostForm(data=request.POST)
@@ -90,7 +101,7 @@ def article_update(request, slug):
             article.title = request.POST['title']
             article.body = request.POST['body']
             article.save()
-            return redirect("article:article_detail", slug=slug)
+            return redirect("article:article_detail", id=id)
         else:
             return HttpResponse("表单内容有误，请重新填写。")
         

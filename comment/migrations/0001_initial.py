@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('blog', '0006_alter_post_options_post_views'),
+        # ('blog', '0006_alter_post_options_post_views'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
