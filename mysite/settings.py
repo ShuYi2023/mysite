@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'blog',
+    # 'password_reset',
     'comment',
     'article',
     'userprofile',

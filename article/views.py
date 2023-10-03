@@ -8,13 +8,18 @@ import random
 import re
 import datetime
 from comment.models import Comment
+from django.core.paginator import Paginator
 
 # 文章列表
 def article_list(request):
     # 取出所有文章
-    articles = ArticlePost.objects.all()
+    article_list = ArticlePost.objects.all()
+
+    paginator = Paginator(article_list, 4)
+    page = request.GET.get('page')
+    articles = paginator.get_page(page)
+
     context = {'articles': articles}
-    # return HttpResponse("Hello World.")
     return render(request, 'article/list.html', context)
 
 # 文章详情
