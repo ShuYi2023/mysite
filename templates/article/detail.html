@@ -41,8 +41,10 @@
                 <!-- 
                     | <a href="{% url "article:article_delete" article.id %}">删除</a>
                 -->
+                {% if user == article.author %}
                 | <a href="#" onclick="confirm_delete()">删除</a>
                 | <a href="{% url 'article:article_update' article.id %}">修改</a>
+                {% endif %}
                 | 浏览: {{article.views}}
             </div>
 

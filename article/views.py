@@ -35,10 +35,11 @@ def article_detail(request, id):
     article = ArticlePost.objects.get(id=id)
 
     article.views += 1
+    article.save(update_fields=['views'])
+
     # art_id = article.id
     # comments = Comment.objects.filter(slug=slug)
     comments = Comment.objects.filter(article=id)
-
 
     if '</h2>' in article.body: # 如果文章中已经有html标签了, 就不转换
         pass
@@ -52,7 +53,6 @@ def article_detail(request, id):
         'markdown.extensions.codehilite',
         ])
 
-    article.save()
     # context = { 'article': article, 'toc': md.toc, 'comments': comments }
     context = { 'article': article, 'comments': comments }
     return render(request, 'article/detail.html', context)
