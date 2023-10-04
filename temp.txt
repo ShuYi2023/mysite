@@ -1,24 +1,29 @@
-````
-.sidetoc {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 20%;
-}
+I want to convert my markdown format into html format by importing python's markdown module. after conversion. my conversion function is the following.
 
+<div>
+def convert_markdown_to_html(input_file, output_file):
 
-<div class="container col-md-12">
-
-    <div class="col-md-8 card mb-4 mt-3 left top">
-        <div data-toc>Article Content</div>
-    </div>
-
-
-    <div class="col-md-4 card mb-4 mt-3 right top">
-        <div class="sidetoc">    
-          <div data-toc>Sidebar Content</div>
-        </div>
-    </div>
-
+    with open(input_file, 'r', encoding='UTF-8') as file:
+        markdown_text = file.read()
+    
+    html_text = markdown.markdown(markdown_text, 
+        extension={
+        # 包含 缩写、表格等常用扩展
+        'markdown.extensions.extra': {},
+        # 语法高亮扩展
+        'markdown.extensions.codehilite':{'css_class':'codehilite'},
+        })
+        
+    with open(output_file, 'w', encoding='UTF-8') as file:
+        file.write(html_text)
 </div>
-````
+
+I got the result:
+<div>
+<h2>找到section字段中的所有值</h2>
+<p><code>python
+sections = set([obj.section for obj in MyModel.objects.all()])
+print(sections)</code></p>
+</div>
+
+of course, the python codes in the html will not be shown correctly. The html lacks class="codehilite"<pre>...</pre>. how to fix it?

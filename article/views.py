@@ -26,9 +26,7 @@ def article_list(request):
 # def article_detail(request, slug):
 def article_detail(request, id):
     """
-    从数据库中取出文章, 判断文章是Markdown格式, 还是HTML格式。
-    如果是HTML格式, 则不改动。
-    如果是Markdown格式, 则用Markdown模块解析成HTML
+    从数据库中取出文章--文章已经变成HTML格式了, 不用Markdown模块解析了。
     """
 
     # article = ArticlePost.objects.get(slug=slug)
@@ -41,17 +39,18 @@ def article_detail(request, id):
     # comments = Comment.objects.filter(slug=slug)
     comments = Comment.objects.filter(article=id)
 
-    if '</h2>' in article.body: # 如果文章中已经有html标签了, 就不转换
-        pass
-    # 如果body中没有html标签, 表明是Markdown格式的文件↓
-    else:
-        article.body = markdown.markdown(article.body,
-        extensions=[
-        # 包含 缩写、表格等常用扩展
-        'markdown.extensions.extra',
-        # 语法高亮扩展
-        'markdown.extensions.codehilite',
-        ])
+
+    # if '</h2>' in article.body: # 如果文章中已经有html标签了, 就不转换
+    #     pass
+    # # 如果body中没有html标签, 表明是Markdown格式的文件↓
+    # else:
+    #     article.body = markdown.markdown(article.body,
+    #     extensions=[
+    #     # 包含 缩写、表格等常用扩展
+    #     'markdown.extensions.extra',
+    #     # 语法高亮扩展
+    #     'markdown.extensions.codehilite',
+    #     ])
 
     # context = { 'article': article, 'toc': md.toc, 'comments': comments }
     context = { 'article': article, 'comments': comments }
@@ -68,6 +67,7 @@ def article_create(request):
             # 保存数据, 但暂时不提交到数据库中
             new_article = article_post_form.save(commit=False)
             sue_or_max=random.choice(['max','ShuYi'])
+            sue_or_max='max'
             new_article.author = User.objects.get(username=sue_or_max)
 
             # 用时间戳生成slug

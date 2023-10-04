@@ -1,0 +1,69 @@
+
+<h2>找到section字段中的所有值</h2>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">sections</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">obj</span><span class="o">.</span><span class="n">section</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">MyModel</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sections</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<ul>
+<li>set是Python的内置函数, 用于生成一个集合(既然是集合, 内部就不会有重复的元素)</li>
+</ul>
+
+<h2>背诵国风·周南·关雎</h2>
+
+<hr />
+
+<p><strong>关关雎鸠，在河之洲。窈窕淑女，君子好逑。</strong></p>
+
+<p>参差荇菜，左右流之。窈窕淑女，寤寐求之。背诵<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >001</span > </span ></p>
+
+<ul>
+<li>列表一</li>
+<li>列表二</li>
+<li>列表3
+<ul>
+<li>列表3.1</li>
+<li>列表3.2</li>
+<li>列表3.3</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >002</span > </span >检查python代码</li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">article_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+    <span class="n">article</span> <span class="o">=</span> <span class="n">ArticlePost</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="c1"># 将markdown语法渲染成html样式</span>
+    <span class="n">article</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+        <span class="n">extensions</span><span class="o">=</span><span class="p">[</span>
+        <span class="c1"># 包含 缩写、表格等常用扩展</span>
+        <span class="s1">&#39;markdown.extensions.extra&#39;</span><span class="p">,</span>
+        <span class="c1"># 语法高亮扩展</span>
+        <span class="s1">&#39;markdown.extensions.codehilite&#39;</span><span class="p">,</span>
+        <span class="p">])</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;article&#39;</span><span class="p">:</span> <span class="n">article</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;article/detail.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2>二级标题</h2>
+
+<p>Ensure that you're not inadvertently introducing any invisible or special characters when creating your markdown text. Now, with this corrected markdown, the <code>markdown.markdown</code> function should properly convert your code blocks to HTML using the <code>pre</code> and <code>code</code> tags<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >003</span > </span ></p>
+
+<h3>三级标题1</h3>
+
+<p>三级标题1的内容</p>
+
+<h3>三级标题2</h3>
+
+<p>标题2的内容</p>
+
+<h2>结尾</h2>
+
+<p>这是文章的最后部分.</p>
