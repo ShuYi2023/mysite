@@ -8,6 +8,18 @@ from django.urls import reverse
 #     (1, "Publish")
 # )
 
+class ArticleColumn(models.Model):
+    """
+    栏目的 Model
+    """
+    # 栏目标题
+    title = models.CharField(max_length=100, blank=True)
+    # 创建时间
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
 
 class ArticlePost(models.Model):
     title = models.CharField(max_length=200)
@@ -24,6 +36,15 @@ class ArticlePost(models.Model):
     slug = models.SlugField(max_length=200)
     # status = models.IntegerField(choices=STATUS, default=0)
     views = models.PositiveIntegerField(default=0)
+
+    # 文章栏目的 “一对多” 外键
+    column = models.ForeignKey(
+        ArticleColumn,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='article'
+    )
 
     class Meta:
         ordering = ['-updated_on']
