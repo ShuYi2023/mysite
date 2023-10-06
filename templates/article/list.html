@@ -13,10 +13,16 @@
 <style>
     .sidetoc {
         height: 100%;
-        width: 100%;
         position: fixed;
         top: 22%;
     }
+    @media (max-width: 720px) {
+        .sidetoc { 
+          height: 100%;
+          width: 100%;
+          position: sticky; 
+        } 
+      }
 </style>
 
 <!-- 定义放置文章标题的div容器 -->
@@ -84,10 +90,27 @@
           {% endfor %}
         </div>
 
-        <!-- tags在Sidebar显示 -->
-        <div class="col-md-3 card mb-4 mt-3">
+        <!-- 这里放section和tags-->
+        <div class="col-md-3 mb-4">
             <div class="sidetoc"> 
-                这里放tags
+                sections:<br>
+                {% for sect in sects %}
+                    <a href="{% url 'article:article_list' %}?sect={{ sect }}" class="badge badge-secondary">
+                        {{ sect }}
+                    </a>
+                {% endfor %}
+
+                <br>
+
+                tags: <br>
+                {% for tag in tags %}
+                    <a href="#"
+                        class="badge badge-secondary" 
+                    >
+                        {{ tag }} 
+                    </a>
+                {% endfor %}
+
             </div>
         </div>
 

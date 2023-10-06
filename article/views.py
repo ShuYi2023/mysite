@@ -13,15 +13,23 @@ from taggit.models import Tag
 
 # 文章列表
 def article_list(request):
-    # 取出所有文章
+    # 取出所有文章, tags, sections
     article_list = ArticlePost.objects.all()
     tags = Tag.objects.all()
+    # 取出字段section中的所有值
+    sects = ArticlePost.objects.values_list('section', flat=True).distinct()
+    sects = list(set(section.lower() for section in sects))
+
+    sect = request.GET.get('sect')
+    # if sect is not None and sect.isdigit():
+    if sect is not None:
+        article_list = article_list.filter(section=sect)
 
     paginator = Paginator(article_list, 4)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
 
-    context = {'articles': articles, 'tags': tags}
+    context = {'articles': articles, 'tags': tags, 'sects': sects}
     return render(request, 'article/list.html', context)
 
 # 文章详情
