@@ -66,7 +66,7 @@ def article_create(request):
         if article_post_form.is_valid:
             # 保存数据, 但暂时不提交到数据库中
             new_article = article_post_form.save(commit=False)
-            sue_or_max=random.choice(['max','ShuYi'])
+            # sue_or_max=random.choice(['max','ShuYi'])
             sue_or_max='max'
             new_article.author = User.objects.get(username=sue_or_max)
 
@@ -82,6 +82,7 @@ def article_create(request):
             new_article.level = 'beginner'
 
             new_article.save()
+            article_post_form.save_m2m()
             return redirect("article:article_list")
         else:
             return HttpResponse("表单有错误, 请重新填写")

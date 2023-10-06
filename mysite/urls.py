@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+
+    path('', include('article.urls', namespace='home_article_list')),
     path('admin/', admin.site.urls),  # 访问的时候, slash不能省略, localhost:8000/admin/
     # path('', include('blog.urls')),
     # 下面的path 要在makemigrations和migrate之后再添加, 否则报错 No module named 'comment.urls

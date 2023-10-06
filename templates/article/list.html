@@ -19,7 +19,7 @@
         <!-- 文章内容 -->
         <div class="col-9 mb-4">
 
-            <!-- article.column -->
+            <!-- article.column 栏目 -->
             {% if article.column %}
                 <button type="button"
                     class="btn btn-sm mb-2 btn-success
@@ -29,8 +29,19 @@
                 </button>
             {% endif %}
 
+            <!-- tags -->
+            <span>
+                {% for tag in article.tags.all %}
+                    <a href="#"
+                    class="badge badge-secondary" 
+                    >
+                        {{ tag }}
+                    </a>
+                {% endfor %}
+            </span>
+            
             <!-- 标题 -->
-            <h4>
+            <h5>
                 <b>
                     <a href="{% url 'article:article_detail' article.id %}"
                        style="color: black;" 
@@ -38,7 +49,7 @@
                         {{ article.title }}
                     </a>
                 </b>
-            </h4>
+            </h5>
 
             <!-- 摘要 -->
             <div>

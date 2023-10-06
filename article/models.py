@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 # STATUS = (
 #     (0, "Draft"),
@@ -36,6 +37,7 @@ class ArticlePost(models.Model):
     slug = models.SlugField(max_length=200)
     # status = models.IntegerField(choices=STATUS, default=0)
     views = models.PositiveIntegerField(default=0)
+    tags = TaggableManager(blank=True)
 
     # 文章栏目的 “一对多” 外键
     column = models.ForeignKey(

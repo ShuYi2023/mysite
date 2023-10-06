@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'comment',
     'article',
     'userprofile',
+    'taggit',
 ]
 
 MIDDLEWARE = [

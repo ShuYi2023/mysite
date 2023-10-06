@@ -13,13 +13,24 @@
             <form method="post" action=".">
                 <!-- Django中需要POST数据的地方都必须有csrf_token -->
                 {% csrf_token %}
-                <!-- 文章标题 -->
+                <!-- 文章label -->
                 <div class="form-group">
-                    <!-- 标签 -->
+                    <!-- label -->
                     <label for="title">文章标题</label>
                     <!-- 文本框 -->
                     <input type="text" class="form-control" id="title" name="title">
                 </div>
+
+                <!-- 文章tags -->
+                <div class="form-group">
+                    <label for="tags">tags</label>
+                    <input type="text" 
+                        class="form-control col-3" 
+                        id="tags" 
+                        name="tags"
+                    >
+                </div>
+
                 <!-- 文章正文 -->
                 <div class="form-group">
                     <label for="body">文章正文</label>
