@@ -10,14 +10,24 @@
 <!-- 写入 base.html 中定义的 content -->
 {% block content %}
 
+<style>
+    .sidetoc {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 22%;
+    }
+</style>
+
 <!-- 定义放置文章标题的div容器 -->
 <div class="container">
 
     <div class="row mt-2">
 
-        {% for article in articles %}
-        <!-- 文章内容 -->
-        <div class="col-9 mb-4">
+        <!--文章列表-->
+        <div class="col-md-9 mb-4">
+          {% for article in articles %}
+            <!-- 每篇文章的内容 -->
 
             <!-- article.column 栏目 -->
             {% if article.column %}
@@ -58,9 +68,8 @@
                 </p>
             </div>
 
-            <!-- 注脚 -->
+            <!-- 浏览量, 更新时间等 -->
             <p>
-                <!-- 附加信息 -->
                 <span style="color: green;">
                     浏览 {{ article.views }} ;
                 </span>
@@ -72,8 +81,16 @@
                 </span>
             </p>
             
+          {% endfor %}
         </div>
-        {% endfor %}
+
+        <!-- tags在Sidebar显示 -->
+        <div class="col-md-3 card mb-4 mt-3">
+            <div class="sidetoc"> 
+                这里放tags
+            </div>
+        </div>
+
     </div>
 
     <!-- 页码导航 -->

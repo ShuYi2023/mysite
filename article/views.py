@@ -9,17 +9,19 @@ import re
 import datetime
 from comment.models import Comment
 from django.core.paginator import Paginator
+from taggit.models import Tag
 
 # 文章列表
 def article_list(request):
     # 取出所有文章
     article_list = ArticlePost.objects.all()
+    tags = Tag.objects.all()
 
     paginator = Paginator(article_list, 4)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
 
-    context = {'articles': articles}
+    context = {'articles': articles, 'tags': tags}
     return render(request, 'article/list.html', context)
 
 # 文章详情
