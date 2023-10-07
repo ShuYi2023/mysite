@@ -70,7 +70,7 @@
             <!-- 摘要 -->
             <div>
                 <p style="color: gray;">
-                    {{ article.body|slice:'100' }}...
+                    {{ article.body|slice:'100'|striptags }}...
                 </p>
             </div>
 
