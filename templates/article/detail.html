@@ -3,7 +3,7 @@
 
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
-    文章详情
+    Gao-{{ article.title }}
 {% endblock title %}
 
 <!-- 写入 base.html 中定义的 content -->
@@ -12,9 +12,8 @@
 <style>
     .sidetoc {
         height: 100%;
-        width: 100%;
         position: fixed;
-        top: 22%;
+        top: 15%;
     }
     
     @media (max-width: 720px) {
@@ -116,7 +115,7 @@
                             {{ comment.created|date:"Y-m-d H:i:s" }}
                         </span> 时说：
                     </p>
-                    <pre style="font-family: inherit; font-size: 1em;">
+                    <pre style="font-family: inherit; font-size: 1em; white-space: pre-wrap; text-align: left;">
                         {{ comment.body }}
                     </pre>
                 {% endfor %}
@@ -127,6 +126,7 @@
         <!-- sidebar 放置文章的TOC-->
         <div class="col-md-3 mb-4 mt-3">
             <div class="sidetoc"> 
+                <a class="nav-link" href="{% url 'article:article_list' %}">回首页</a>
                 <div id="ToC"></div>
             </div>
         </div>
@@ -134,5 +134,9 @@
     </div>
 
 </div>
+
+<!-- 实现导航栏和页面同步
+<script src="{% static 'toc/toc_sync.js' %}"></script>
+-->
 
 {% endblock content %}

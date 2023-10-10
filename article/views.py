@@ -25,7 +25,7 @@ def article_list(request):
     if sect is not None:
         article_list = article_list.filter(section=sect)
 
-    paginator = Paginator(article_list, 4)
+    paginator = Paginator(article_list, 8)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
 

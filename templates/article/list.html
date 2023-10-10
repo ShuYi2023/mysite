@@ -1,6 +1,5 @@
 <!-- extends表明此页面继承自 base.html 文件 -->
 {% extends "base.html" %}
-{% load static %}
 
 <!-- 写入 base.html 中定义的 title -->
 {% block title %}
@@ -33,23 +32,19 @@
         <!--文章列表-->
         <div class="col-md-9 mb-4">
           {% for article in articles %}
-            <!-- 每篇文章的内容 -->
 
-            <!-- article.column 栏目 -->
-            {% if article.column %}
-                <button type="button"
-                    class="btn btn-sm mb-2 btn-success
-                    "
-                >
-                    {{ article.column }}
-                </button>
+            <!-- article.section 栏目 -->
+            {% if article.section %}
+                <a href="{% url 'article:article_list' %}?sect={{ article.section }}" class="badge badge-secondary">
+                    {{ article.section }}
+                </a>
             {% endif %}
 
             <!-- tags -->
             <span>
                 {% for tag in article.tags.all %}
                     <a href="#"
-                    class="badge badge-secondary" 
+                    class="badge" 
                     >
                         {{ tag }}
                     </a>

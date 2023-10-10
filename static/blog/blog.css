@@ -161,18 +161,18 @@ h1 {
 h2 {
     /*color:#FCA205;*/
     color:#1e90ff;
-    font-size:1.6rem;
+    font-size:1.3rem;
 }
 
 h3 {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     /*color:#e57373;*/
-    padding-left: 0.5rem;
+    /*padding-left: 0.5rem;*/
     color:cadetblue
 }
 
 p {
-    font-size: 18px;
+    font-size: 1.1rem;
     display: block;
     color: #333;
     line-height: 1.5;

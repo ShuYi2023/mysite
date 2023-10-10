@@ -31,7 +31,7 @@ yauthor = User.objects.get(username=sue_or_max)
 
 file_meta = {"section": "gao", # ue, u3d, tailwind, python, ksp
              "project": "gao_book",
-             "chapter": "b01",
+             "chapter": "a01",
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time
@@ -195,11 +195,11 @@ try:
 except:
     slug_exist = False  # 如果找不到slug, 设置slug_exist为不存在
 
-if slug_exist:
-    yinput = input("要覆盖原来的博文吗(y or Y)?")
-    if yinput.lower().strip() != 'y':
-        print("你选择了不覆盖, 程序退出")
-        exit(0)
+# if slug_exist:
+#     yinput = input("要覆盖原来的博文吗(y or Y)?")
+#     if yinput.lower().strip() != 'y':
+#         print("你选择了不覆盖, 程序退出")
+#         exit(0)
 
 obj, created = ArticlePost.objects.update_or_create(
     slug = yslug,
