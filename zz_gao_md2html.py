@@ -177,7 +177,6 @@ with open(html_output_path, 'r+', encoding='UTF-8') as f:
     for line in lines[1:]:
         f.write(line)
 
-
 # text_for_post 重新赋值
 with open(html_output_path, 'r', encoding='UTF-8') as f:
     text_for_post = f.read()
