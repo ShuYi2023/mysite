@@ -27,8 +27,8 @@ yauthor = User.objects.get(username=sue_or_max)
 
 file_meta = {"section": "gao", # ue, u3d, tailwind, python, ksp
              "project": "gao_book",
-             "chapter": "c01",
-             "for_vip": True,
+             "chapter": "a01",
+             "for_vip": False,
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time
@@ -160,7 +160,13 @@ def convert_image(match):
     url = match.group(1)
     alt_text = match.group(2)
     width = match.group(3)
-    return f'<img src="{url}" alt="{alt_text}" width="{width}">'
+
+    if int(width)<=80:
+        imgclass = 'inline'
+    else:
+        imgclass = 'centered'
+
+    return f'<img class={imgclass} src="{url}" alt="{alt_text}" width="{width}">'
 
 new_html_text = re.sub(pattern, convert_image, text_for_post)
 

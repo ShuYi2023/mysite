@@ -219,12 +219,23 @@ ul {
 
 
 img {
-    display: inline-block;
+    /* display: inline-block;*/
     vertical-align: middle;
     /*
     margin-left: auto;
     margin-right: auto;
     max-width:85%;*/
+}
+
+img.inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*
