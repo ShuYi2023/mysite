@@ -1,0 +1,22 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load static %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+  Max的G.A.O工作室
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+
+<!-- 定义放置文章标题的div容器 -->
+<div class="container">
+
+    <h1>抱歉!</h1>
+    <h5>只有 VIP用户 才能阅读. 请扫描加微信好友洽谈.</h5>
+    <img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20231011125826.png" alt="maxQR" width="200">
+
+</div>
+
+{% endblock content %}

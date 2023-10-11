@@ -219,10 +219,12 @@ ul {
 
 
 img {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
+    /*
     margin-left: auto;
     margin-right: auto;
-    max-width:85%;
+    max-width:85%;*/
 }
 
 /*

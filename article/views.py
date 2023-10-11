@@ -10,6 +10,7 @@ import datetime
 from comment.models import Comment
 from django.core.paginator import Paginator
 from taggit.models import Tag
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # 文章列表
 def article_list(request):
@@ -21,9 +22,12 @@ def article_list(request):
     sects = list(set(section.lower() for section in sects))
 
     sect = request.GET.get('sect')
-    # if sect is not None and sect.isdigit():
     if sect is not None:
         article_list = article_list.filter(section=sect)
+
+    tag = request.GET.get('tag')
+    if tag is not None:
+        article_list = article_list.filter(tags__name__in=[tag])
 
     paginator = Paginator(article_list, 8)
     page = request.GET.get('page')
@@ -34,6 +38,7 @@ def article_list(request):
 
 # 文章详情
 # def article_detail(request, slug):
+# @login_required
 def article_detail(request, id):
     """
     从数据库中取出文章--文章已经变成HTML格式了, 不用Markdown模块解析了。
@@ -42,31 +47,23 @@ def article_detail(request, id):
     # article = ArticlePost.objects.get(slug=slug)
     article = ArticlePost.objects.get(id=id)
 
+    # Check group membership
+    is_vip = request.user.groups.filter(name='VIP').exists()
+    if request.user.is_superuser:
+        is_vip = True
+
     article.views += 1
     article.save(update_fields=['views'])
-
-    # art_id = article.id
-    # comments = Comment.objects.filter(slug=slug)
     comments = Comment.objects.filter(article=id)
-
-
-    # if '</h2>' in article.body: # 如果文章中已经有html标签了, 就不转换
-    #     pass
-    # # 如果body中没有html标签, 表明是Markdown格式的文件↓
-    # else:
-    #     article.body = markdown.markdown(article.body,
-    #     extensions=[
-    #     # 包含 缩写、表格等常用扩展
-    #     'markdown.extensions.extra',
-    #     # 语法高亮扩展
-    #     'markdown.extensions.codehilite',
-    #     ])
-
-    # context = { 'article': article, 'toc': md.toc, 'comments': comments }
     context = { 'article': article, 'comments': comments }
-    return render(request, 'article/detail.html', context)
-    #return render(request, 'post_detail.html', context)
 
+    if not article.for_vip:
+            return render(request, 'article/detail.html', context)
+    else: # article.for_vip:
+        if not is_vip:
+            return render(request, 'article/not_a_vip.html')
+        if is_vip:
+            return render(request, 'article/detail.html', context)
 
 def article_create(request):
     # 判断用户是否提交数据

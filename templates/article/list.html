@@ -43,9 +43,7 @@
             <!-- tags -->
             <span>
                 {% for tag in article.tags.all %}
-                    <a href="#"
-                    class="badge" 
-                    >
+                    <a href="{% url 'article:article_list' %}?tag={{ tag }}" class="badge" >
                         {{ tag }}
                     </a>
                 {% endfor %}
@@ -99,9 +97,7 @@
 
                 tags: <br>
                 {% for tag in tags %}
-                    <a href="#"
-                        class="badge badge-secondary" 
-                    >
+                    <a href="{% url 'article:article_list' %}?tag={{ tag }}" class="badge badge-secondary" >
                         {{ tag }} 
                     </a>
                 {% endfor %}

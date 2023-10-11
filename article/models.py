@@ -39,6 +39,8 @@ class ArticlePost(models.Model):
     views = models.PositiveIntegerField(default=0)
     tags = TaggableManager(blank=True)
 
+    for_vip = models.BooleanField(default=False)
+
     # 文章栏目的 “一对多” 外键
     column = models.ForeignKey(
         ArticleColumn,

@@ -19,15 +19,16 @@ from article.models import ArticlePost
 from django.utils import timezone
 
 # 设置文件属性
-sections = ["django", 'animation', 'ue', 'u3d', 'tailwind']
+sections = ['gao', 'django', 'animation', 'ue', 'u3d', 'tailwind']
 # sue_or_max=random.choice(['max','ShuYi'])
 sue_or_max='max'
 yauthor = User.objects.get(username=sue_or_max)
 
 
-file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
-             "project": "pygments",
-             "chapter": "a01",
+file_meta = {"section": "gao", # ue, u3d, tailwind, python, ksp
+             "project": "gao_book",
+             "chapter": "c01",
+             "for_vip": True,
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time
@@ -37,7 +38,6 @@ file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
              "level": "beginner",
              # "status": 1,  # integer
              }
-
 
 language_styles = {
     "python": ("python", "colorful"),
@@ -188,4 +188,13 @@ obj, created = ArticlePost.objects.update_or_create(
     slug = yslug,
     defaults = file_meta
     )
+
+obj.tags.add(file_meta["section"])
+
+if file_meta["for_vip"]:
+    obj.tags.add("vip")
+else:
+    obj.tags.add("free")
+
+
 print("博文更新成功!")
