@@ -1,0 +1,254 @@
+
+<h2>Ubuntu服务器版的下载地址</h2>
+
+<ul>
+<li><p>在Windows中制作安装盘</p>
+
+<ul>
+<li><p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >001</span > </span >下载地址: http://releases.ubuntu.com/focal/, 这是: Ubuntu 20.04.5 LTS (Focal Fossa)</p></li>
+<li><p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >002</span > </span >在 Windows 电脑中用 rufus 把 iso 文件写入到一个 U盘, 8G 的U盘是可以的。</p></li>
+</ul></li>
+</ul>
+
+<h2>安装Ubuntu注意事项</h2>
+
+<h3>配置网络</h3>
+
+<ul>
+<li>如果是在旧电脑上安装, 使用的是无线 wifi, 最好在安装过程中就配置好网络.
+<ul>
+<li>(不推荐的做法: 手动配置网络时, 用 Python 脚本把修改好的 /etc/netplan/00----wifi.yaml 文件 put 到服务器相应目录.)</li>
+</ul></li>
+<li><p>(也可以装到 virtual box 中)</p>
+
+<ul>
+<li><p>这种情况下, 不用要Uattended模式. 偏要用的话, 会没有admin的权限.</p></li>
+<li><p>个人用于实验的话, <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >003</span > </span >4核4G就可以了, <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >004</span > </span >硬盘用25G也可以了.
+<img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230929122725.png" alt="image.png|450" /></p></li>
+<li>配置摘要如下:
+<img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230929122819.png" alt="image.png|450" /></li>
+</ul></li>
+<li>按照下图配置好网络.
+<img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230929122931.png" alt="image.png|450" /></li>
+</ul>
+
+<h2>从MacBook终端用ssh访问服务器</h2>
+
+<h3>服务器连接 Wifi</h3>
+
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >005</span > </span >编辑配置文件. 仔细阅读命令后面的注释。</li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code>ip<span class="w"> </span>a<span class="w">  </span><span class="c1"># 查看网络的名称</span>
+sudo<span class="w"> </span>su<span class="w"> </span><span class="c1"># 获得 root 权限</span>
+<span class="nb">cd</span><span class="w"> </span>/etc/netplan/<span class="w"> </span><span class="c1"># 进入相关目录</span>
+ls<span class="w">  </span><span class="c1"># 查看目录下的文件</span>
+nano<span class="w"> </span><span class="m">00</span>-installer-config-wifi.yaml
+</code></pre>
+</div>
+
+<ul>
+<li><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >006</span > </span >编辑配置文件内容。以下内容仅供参考, 请根据自己环境中的网络配置。</li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1"># This is the network config written by &#39;max&#39;</span>
+network:
+<span class="w">  </span>wifis:
+<span class="w">    </span>wlp4s0:
+<span class="w">      </span>dhcp4:<span class="w"> </span>no<span class="w">  </span><span class="c1"># 不自动分配网址</span>
+<span class="w">      </span>dhcp6:<span class="w"> </span>no
+<span class="w">      </span>addresses:<span class="w"> </span><span class="o">[</span><span class="m">192</span>.168.1.244/24<span class="o">]</span><span class="w">  </span><span class="c1"># 设置静态网址</span>
+<span class="w">      </span>gateway4:<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w">  </span><span class="c1"># 网关</span>
+<span class="w">      </span>nameservers:<span class="w">  </span><span class="c1"># 域名服务器</span>
+<span class="w">        </span>addresses:<span class="w"> </span><span class="o">[</span><span class="m">114</span>.114.114.114,<span class="w"> </span><span class="m">233</span>.5.5.5,<span class="w"> </span><span class="m">9</span>.9.9.9,<span class="w"> </span><span class="m">8</span>.8.8.8<span class="o">]</span>
+<span class="w">      </span>access-points:
+<span class="w">        </span><span class="s2">&quot;max_tp_mesh&quot;</span>:
+<span class="w">          </span>password:<span class="w"> </span><span class="s2">&quot;xxxxxxxx&quot;</span>
+<span class="w">  </span>version:<span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="c1"># 必须是 version 2</span>
+</code></pre>
+</div>
+
+<ul>
+<li>启动服务.</li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code>sudo<span class="w"> </span>netplan<span class="w"> </span>generate
+sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</code></pre>
+</div>
+
+<h3>获得服务器的 ip 地址</h3>
+
+<ul>
+<li>在服务器中运行命令: <code>ip a</code></li>
+</ul>
+
+<h3>用下图的ssh方式访问</h3>
+
+<ul>
+<li>ssh max@192.168.1.244</li>
+</ul>
+
+<p><img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230929131900.png" alt="image.png|550" /></p>
+
+<h2>安装Python3.10<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >007</span > </span ></h2>
+
+<ul>
+<li>Ubuntu 20.04 默认的 Python 是 3.8 版本的, 因此要<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >008</span > </span >在 Ubuntu 20.04 系统中安装 python3.10<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >009</span > </span >
+<div class="codehilite">
+<pre><span></span><code>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:deadsnakes/ppa
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3.10<span class="w">  </span><span class="c1"># 会安装最新版的 3.10.9.</span>
+
+<span class="c1"># 安装 venv</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3.10-venv<span class="w"> </span>-y<span class="w">  </span><span class="c1"># 3.10 不能省略</span>
+
+<span class="c1"># 如果要删除</span>
+sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>--remove<span class="w"> </span>ppa:deadsnakes/ppa
+sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>--autoremove<span class="w"> </span>python3.10
+</code></pre>
+</div></li>
+</ul>
+
+<h2>创建虚拟环境<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >010</span > </span ></h2>
+
+<div class="codehilite">
+<pre><span></span><code>max@ubserver:~$<span class="w"> </span>mkdir<span class="w"> </span>envs
+max@ubserver:~$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>envs
+max@ubserver:~/envs$<span class="w"> </span>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dj4<span class="w"> </span><span class="c1"># 创建虚拟环境, 3.10 不能省略</span>
+
+max@ubserver:~/envs$<span class="w"> </span>ls<span class="w"> </span>dj4/
+bin<span class="w">  </span>include<span class="w">  </span>lib<span class="w">  </span>lib64<span class="w">  </span>pyvenv.cfg<span class="w">  </span>share
+</code></pre>
+</div>
+
+<h2>激活虚拟环境<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >011</span > </span ></h2>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nb">source</span><span class="w"> </span>/home/max/yenvs/dj4/bin/activate
+</code></pre>
+</div>
+
+<h2>安装 Django, 使用科大的源<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >012</span > </span ></h2>
+
+<pre><code>pip install django -i https://pypi.mirrors.ustc.edu.cn/simple/
+(dj4) max@ubserver:~$ python -m  django --version # 查看 Django 版本
+4.1.6
+(dj4) max@ubserver:~$ ls / # 查看根目录
+cd ~ # 到用户的 home, 相当于 /home/max
+</code></pre>
+
+<h2><a href="b部署和更新Django项目.md">待完成--部署和更新Django项目</a></h2>
+
+<h2>一些Ubuntu的命令</h2>
+
+<ul>
+<li><p>从局域网的另一台电脑访问 Django服务器: 192.168.1.244:**8000</p></li>
+<li><p>在Django项目的 setting.py 中设置好 </p></li>
+</ul>
+
+<pre><code>ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', '192.168.0.244']
+</code></pre>
+
+<ul>
+<li><p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >013</span > </span >把修改好的配置文件上传到服务器</p></li>
+<li><p><span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >014</span > </span >启动服务器, 注意绿色的部分--<strong>要给定</strong> <strong>ip</strong> <strong>和<em>*</strong>端口</em>* :</p>
+
+<ul>
+<li><p><code>(dj4)</code> <strong><code>max@u22</code></strong><code>:</code><strong><code>~/mysite</code></strong><code>$ python manage.py</code> <code>runserver 0.0.0.0:8000</code></p></li>
+<li><p>访问的时候, 要访问 <code>0.0.0.0:8000</code>, 不要写成<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >015</span > </span ><code>0.0.0.0``/``8000</code>--折腾了 15 分钟</p></li>
+<li><p>有了 gunicorn 后, 直接访问192.168.1.244即可, 后面不用写<code>:8000</code> .</p></li>
+</ul></li>
+</ul>
+
+<h3>修改文件名:</h3>
+
+<ul>
+<li><code>sudo mv former_name new_name</code></li>
+</ul>
+
+<h3>chown 修改文件的 owner</h3>
+
+<ul>
+<li><code>chown owner_name file_name</code>
+<ul>
+<li><code>sudo chown max 00-installer-config-wifi.yaml</code></li>
+</ul></li>
+<li><code>chown owner_name file_dir/</code> # 文件夹要带斜杠</li>
+</ul>
+
+<h3>获得root权限</h3>
+
+<ul>
+<li><code>sudo su # 用于移动文件</code></li>
+</ul>
+
+<h3>移动文件</h3>
+
+<ul>
+<li><code>sudo path new-path</code></li>
+</ul>
+
+<h3>查看电量:</h3>
+
+<ul>
+<li><code>upower --dump | grep --color=never -E "state|to\ full|to\ empty|percentage"</code></li>
+</ul>
+
+<h3>合盖不休眠的设置</h3>
+
+<ul>
+<li><code>sudo nano /etc/systemd/logind.conf</code></li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1"># See logind.conf(5) for details.</span>
+
+<span class="o">[</span>Login<span class="o">]</span>
+<span class="c1">#HandleHibernateKey=hibernate</span>
+<span class="c1">#HandleLidSwitch=suspend</span>
+<span class="nv">HandleLidSwitch</span><span class="o">=</span>ignore
+<span class="c1">#HandleLidSwitchExternalPower=suspend</span>
+</code></pre>
+</div>
+
+<h3><code>reboot</code> 重新启动</h3>
+
+<ul>
+<li><code>然后要等一分钟才会真正 reboot</code></li>
+</ul>
+
+<h3><code>logout</code> 退出登录状态</h3>
+
+<h3>设置时区</h3>
+
+<pre><code>sudo timedatectl set-timezone Asia/Shanghai
+
+date # 查看时间
+</code></pre>
+
+<h3>用 sftp 的方式上传文件夹到服务器</h3>
+
+<ul>
+<li>在终端输入命令: sftp max@192.168.1.xxx # 连接到服务器 <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >016</span > </span ></li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1"># 查看max在远程文件夹中的权限</span>
+<span class="nb">cd</span><span class="w"> </span>/home/max<span class="w"> </span><span class="c1"># <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >017</span > </span ></span>
+ls<span class="w"> </span>-ld<span class="w"> </span>projects<span class="w"> </span><span class="c1"># <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >018</span > </span ></span>
+
+<span class="c1"># drwxrwxr-x 5 max max 前面的d表示这是dir, rwx 表示可读可写可执行 <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >019</span > </span ></span>
+
+<span class="c1"># 上传文件夹: </span>
+put<span class="w"> </span>-r<span class="w"> </span>/Users/maxmacboookpro2019/my_projs/10django_prjs/mysite<span class="w"> </span>/home/max/projects/<span class="w"> </span><span class="c1"># 上传本地的mysite文件夹到远端的projects文件夹之下 <span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >020</span > </span ></span>
+</code></pre>
+</div>
+
+<ul>
+<li>上传文件夹一定要有 -r (recursive)参数</li>
+</ul>

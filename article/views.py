@@ -21,13 +21,12 @@ def article_list(request):
     sects = ArticlePost.objects.values_list('section', flat=True).distinct()
     sects = list(set(section.lower() for section in sects))
 
-    sect = request.GET.get('sect')
-    if sect is not None:
-        article_list = article_list.filter(section=sect)
-
+    sect = request.GET.get('sect', 'gao') # sect的default的值是'gao'
     tag = request.GET.get('tag')
     if tag is not None:
         article_list = article_list.filter(tags__name__in=[tag])
+    else:
+        article_list = article_list.filter(section=sect)
 
     paginator = Paginator(article_list, 8)
     page = request.GET.get('page')

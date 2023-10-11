@@ -12,4 +12,5 @@ urlpatterns = [
     path('article-delete/<int:id>/', views.article_delete, name='article_delete'),
     path('article-update/<int:id>/', views.article_update, name='article_update'),
     # path('article-list/<str:tag>', views.tag_list, name='tag_list'),  # 访问的网址是: article/tag-list/
+    # http://127.0.0.1:8000/article-list/?sect=gao
 ]

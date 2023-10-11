@@ -68,7 +68,7 @@
             </div>
 
             <!-- 浏览量, 更新时间等 -->
-            <p>
+            <p class="small-text">
                 <span style="color: green;">
                     浏览 {{ article.views }} ;
                 </span>
@@ -97,7 +97,7 @@
 
                 tags: <br>
                 {% for tag in tags %}
-                    <a href="{% url 'article:article_list' %}?tag={{ tag }}" class="badge badge-secondary" >
+                    <a href="{% url 'article:article_list' %}?tag={{ tag }}" class="badge" >
                         {{ tag }} 
                     </a>
                 {% endfor %}
