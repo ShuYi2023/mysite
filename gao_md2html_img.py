@@ -3,12 +3,10 @@
 import sys
 import tkinter
 from tkinter import filedialog
-
 import markdown2
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
-
 from pathlib import Path
 import django
 import os
@@ -17,9 +15,7 @@ import random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 django.setup()
 from django.contrib.auth.models import User
-# from blog.models import Post
 from article.models import ArticlePost
-
 from django.utils import timezone
 
 # 设置文件属性
@@ -29,8 +25,8 @@ sue_or_max='max'
 yauthor = User.objects.get(username=sue_or_max)
 
 
-file_meta = {"section": "gao", # ue, u3d, tailwind, python, ksp
-             "project": "gao_book",
+file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
+             "project": "pygments",
              "chapter": "a01",
              "title": "",
              "author": yauthor, # Foreign Key
@@ -92,13 +88,6 @@ def convert_markdown_to_html(input_file, output_file):
     with open(output_file, 'w', encoding='UTF-8') as file:
         file.write(html_text)
 
-def clear_em(raw_code_block):
-    new_code_block = raw_code_block
-    # <p><code>(.*?)</code></p>
-    for dirty_tag in [r'<em>', r'</em>', r'<p>', r'</p>', r'python']:
-        new_code_block = new_code_block.replace(dirty_tag, '')
-    return new_code_block
-
 
 # 创建或者查找output_path, 用于读取和保存文件
 base_dir = Path(__file__).resolve().parent #
@@ -146,11 +135,11 @@ html_output_path = os.path.join(output_path, 'output_with_check.html')
 with open(html_output_path, "w", encoding='UTF-8') as f:
     f.write(text_for_post)
 
-# 获取文章的标题, 从HTML中删除标题, 删除标题的HTML tag
+# ***获取文章的标题, 从HTML中删除标题, 删除标题的HTML tag
 with open(html_output_path, 'r+', encoding='UTF-8') as f:
     lines = f.readlines()
     ytitle = lines[0].strip()
-    pattern = r"<h1>|</h1>" # this matches either <p> or </p>
+    pattern = r"<h1>|</h1>|<p>|</p>" # this matches either <p> or </p>
     replacement = ""
     result = re.sub(pattern, replacement, ytitle) # returns string without the tags
     print(result) # this prints 如何编辑能够发表在blog系统中的md文档
@@ -164,7 +153,7 @@ with open(html_output_path, 'r', encoding='UTF-8') as f:
     text_for_post = f.read()
 
 # *** Regular expression pattern to match the HTML image syntax
-# pattern = r'<img src="(.*?)" alt="(.*?)\|(\d+)">'
+# <img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20230925143341.png" alt="image.png|650" />
 pattern = r'<img\s+src\s*=\s*"([^"]+)"\s+alt\s*=\s*"([^"|]+)\|(\d+)"\s*/?>'
 
 def convert_image(match):
@@ -175,7 +164,7 @@ def convert_image(match):
 
 new_html_text = re.sub(pattern, convert_image, text_for_post)
 
-print(new_html_text)
+# print(new_html_text)
 
 # *** 在数据库中更新或者创建新的内容
 file_meta["body"] = new_html_text

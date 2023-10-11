@@ -1,0 +1,36 @@
+<p>Pygments和代码高亮</p>
+
+<p>在使用<code>python markdown2</code>模块把<code>.md</code>文件解析为html文件格式之后, 可以用<code>pygments</code>模块实现代码高亮√</p>
+
+<p>代码如下√</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">pygments.formatters</span> <span class="kn">import</span> <span class="n">HtmlFormatter</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 创建manni.css, 其他式样可以参考 http://help.farbox.com/pygments.html</span>
+
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">HtmlFormatter</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;manni&#39;</span><span class="p">)</span>
+
+<span class="c1"># 指定css文件的存放路径</span>
+
+<span class="n">current_script_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+<span class="n">current_script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">current_script_path</span><span class="p">)</span>
+<span class="n">css_path</span> <span class="o">=</span> <span class="n">current_script_dir</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;/static/md_css/manni.css&#39;</span>
+
+<span class="c1"># 生成CSS文件, 要查看解析出来的html文件用的是.codehilite, 还是.highlight</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">css_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">formatter</span><span class="o">.</span><span class="n">get_style_defs</span><span class="p">(</span><span class="s1">&#39;.codehilite&#39;</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>生成了css文件后, 放到base.html中即可√</p>
+
+<p><img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20231011091655.png" alt="image.png|450" /></p>
+
+<p>为什么要用codehilite而不是highlight? 下面两个图说明了问题√</p>
+
+<p><img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20231011092716.png" alt="image.png|450" /></p>
+
+<p><img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20231011092617.png" alt="image.png|450" /></p>
