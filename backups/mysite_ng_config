@@ -8,13 +8,13 @@ server {
     }
 
     location /static/ {
-        root /home/max/mysite/;
+        root /root/projects/mysite/;
         add_header Pragma public;
         add_header Cache-Control "public";
     }
 
     location /media/ {
-        root /home/max/mysite/;
+        root /root/projects/mysite/;
         add_header Pragma public;
         add_header Cache-Control "public";
     }
