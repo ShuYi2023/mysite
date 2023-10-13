@@ -1,0 +1,4 @@
+# 把这个文件trz放到云端服务器的~/.ssh/中, 然后改名mv为config
+
+Host *
+    ServerAliveInterval 10
