@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-0yz^v%3s&kt4qdj#zb7335(jb@dnoo4q9srf+r%lsq0b&6w6la
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,7 +125,9 @@ USE_TZ = True
 
 # 在开发阶段要用到 STATIC_URL, 用于告诉服务器到哪里找到静态文件, 
 # templates中的{% load static %}以及 src="{% static 'blog/script.js' %}" 与这个目录有关
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
 
 # 在生产阶段, 要用到 STATICFILES_DIRS, 服务器把这里的文件, 通过collectstatics命令放到STATIC_ROOT目录中去
 STATICFILES_DIRS = [
