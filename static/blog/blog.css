@@ -7,9 +7,11 @@
 @tailwind utilities;
 */
 
+/* 设置选中内容的背景颜色
 ::selection {
-    background-color: #eee;
+    background-color: #895089;
 }
+*/
 
 html {
     font-size:100%;

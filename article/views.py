@@ -24,9 +24,9 @@ def article_list(request):
     sect = request.GET.get('sect', 'gao') # sect的default的值是'gao'
     tag = request.GET.get('tag')
     if tag is not None:
-        article_list = article_list.filter(tags__name__in=[tag])
+        article_list = article_list.filter(tags__name__in=[tag]).order_by('title')
     else:
-        article_list = article_list.filter(section=sect)
+        article_list = article_list.filter(section=sect).order_by('title')
 
     paginator = Paginator(article_list, 8)
     page = request.GET.get('page')

@@ -25,10 +25,11 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-0yz^v%3s&kt4qdj#zb7335(jb@dnoo4q9srf+r%lsq0b&6w6la'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# 用法: DJANGO_DEBUG=True python manage.py runserver
+DEBUG = False
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['*', '106.14.219.62','0.0.0.0']
 
 # Application definition
 
@@ -135,7 +136,7 @@ STATICFILES_DIRS = [
     # '/var/www/static/',
     # ue/001/imgs/1.png
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # 不用static_root了
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root') # 不用static_root了, staticfiles
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -1,22 +1,22 @@
-# /etc/nginx/sites-available/mysite_ng_config
-
 server {
     listen 80;
     server_name _;
 
     location / {
+        include proxy_params;
         proxy_pass http://127.0.0.1:8000;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $host;
-        proxy_redirect off;
     }
 
     location /static/ {
-        alias /root/projects/mysite/staticfiles/;
+        root /home/max/projects/mysite/;
+        add_header Pragma public;
+        add_header Cache-Control "public";
     }
 
     location /media/ {
-        alias /root/projects/mysite/mediafiles/;
+        root /home/max/projects/mysite/;
+        add_header Pragma public;
+        add_header Cache-Control "public";
     }
 
 }
