@@ -25,10 +25,10 @@ sue_or_max='max'
 yauthor = User.objects.get(username=sue_or_max)
 
 
-file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
-             "project": "git",
-             "chapter": "a01",
-             "for_vip": False,
+file_meta = {"section": "gao", # ue, u3d, tailwind, python, ksp
+             "project": "gao_book",
+             "chapter": "k01",
+             "for_vip": True,
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time
