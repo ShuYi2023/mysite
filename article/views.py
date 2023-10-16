@@ -28,7 +28,7 @@ def article_list(request):
     else:
         article_list = article_list.filter(section=sect).order_by('title')
 
-    paginator = Paginator(article_list, 8)
+    paginator = Paginator(article_list, 12)
     page = request.GET.get('page')
     articles = paginator.get_page(page)
 
