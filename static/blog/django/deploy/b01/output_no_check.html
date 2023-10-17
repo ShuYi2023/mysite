@@ -1,4 +1,47 @@
-<p>b部署Django项目</p>
+<p>b更新和部署Django项目</p>
+
+<h2>部署好之后的日常更新 #flashcard</h2>
+
+<ul>
+<li><p>要严格按照网站上写的流程来做。
+<!--ID: 1696075721909--></p></li>
+<li><p>先从阿里云服务器上把数据库发到github。</p>
+
+<ul>
+<li>进入服务器的Terminal ✅</li>
+<li>git commit -am "commit本地的变化" # ✅</li>
+<li>git pull origin master # ✅</li>
+<li>git push origin master # ✅</li>
+</ul></li>
+<li>然后在本地的'Git Desktop'中执行 git pull ✅</li>
+<li>在本地写好文章 ✅</li>
+<li>打开一个bash窗口, 确保是在ue5web环境中 ✅</li>
+</ul>
+
+<p><img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20231017095552.png" alt="image.png|350" /></p>
+
+<ul>
+<li>DJANGO_DEBUG=True python manage.py runserver # ✅</li>
+<li>打开另一个bash窗口, 确保是在(ue5web)环境中 ✅</li>
+<li>设置gao_md2html.py✅, 执行✅, 注入到本地的db.sqlite3</li>
+</ul>
+
+<p><img src="https://maxobsidian.oss-cn-shanghai.aliyuncs.com/imgs/20231017095441.png" alt="image.png|450" /></p>
+
+<ul>
+<li>在Git Desktop中, 把变化push到远端 ✅</li>
+<li>回到服务器的Terminal ✅
+<ul>
+<li>git checkout -- db.sqlite3 ## 注意要用两个减号 ✅</li>
+<li>git pull # ✅</li>
+</ul></li>
+</ul>
+
+<h2>(也可以用trz的方式更新)</h2>
+
+<p>用本地的db.sqlite3替换服务器中的db.sqlite3; 可以热替换
+    * 用Python脚本做这件事吧。开始可以用trz.
+* √git ignore文件不再包含db.sqlite3</p>
 
 <h3>U410中mysite的文件夹 #flashcard</h3>
 
@@ -8,20 +51,11 @@
 <!--ID: 1696068518959--></li>
 </ul>
 
-<h2>部署好之后的日常更新 #flashcard</h2>
-
-<ul>
-<li>√在本地写好文章后, 注入到本地的db.sqlite3</li>
-<li>√用本地的db.sqlite3替换服务器中的db.sqlite3; 可以热替换
-<ul>
-<li>用Python脚本做这件事吧。开始可以用trz.</li>
-</ul></li>
-<li>√git ignore文件不再包含db.sqlite3</li>
-<li>√部署的时候, 注意密码不要泄露
-<!--ID: 1696075721909--></li>
-</ul>
-
 <h2>部署时的要点</h2>
+
+<ul>
+<li>部署的时候, 注意密码不要泄露</li>
+</ul>
 
 <h3>整个系统的组成部分</h3>
 
@@ -218,10 +252,7 @@ sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-availab
 <li><p>重启: </p></li>
 </ul>
 
-<div class="codehilite">
-<pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx<span class="w"> </span><span class="c1"># √</span>
-</code></pre>
-</div>
+<p>sudo systemctl restart nginx # √</p>
 
 <ul>
 <li>√访问ip, 如果报错 502, 则表明 Nginx 开始工作了</li>
@@ -229,10 +260,7 @@ sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-availab
 <li>激活虚拟环境</li>
 </ul>
 
-<div class="codehilite">
-<pre><span></span><code><span class="nb">source</span><span class="w"> </span>/home/max/yenvs/dj4/bin/activate<span class="w"> </span><span class="c1"># √</span>
-</code></pre>
-</div>
+<p>source /home/max/yenvs/dj4/bin/activate # √</p>
 
 <ul>
 <li>√启动服务器, </li>
@@ -246,24 +274,42 @@ sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-availab
 <ul>
 <li><p>Django mysite 应该能够正常工作了</p></li>
 <li><p>√ctrl_c 关闭服务.</p></li>
+<li><p>设置nginx开机自动启动
+sudo systemctl enable nginx # √</p></li>
 </ul>
+
+<h2>Nginx的一些命令</h2>
+
+<p>开启nginx
+ systemctl start nginx
+查看nginx状态
+ systemctl status nginx
+关闭nginx
+ systemctl stop nginx
+重启nginx
+ systemctl restart nginx</p>
 
 <h2>Gunicorn 设置</h2>
 
 <ul>
 <li><p>√安装: pip install gunicorn -i https://pypi.mirrors.ustc.edu.cn/simple/</p></li>
 <li><p>√cd 到你项目的根目录</p></li>
-<li><p>√用 gunicorn 启动服务: gunicorn your_project.wsgi (例如, gunicorn mysite.wsgi)</p></li>
+<li><p>用 gunicorn 启动服务: </p></li>
+</ul>
+
+<p>gunicorn mysite.wsgi # √</p>
+
+<ul>
 <li><p>√ctrl_c 关闭服务.</p></li>
 <li><p>让服务后台运行, 并且不受 logout 的影响: </p>
 
 <ul>
 <li>gunicorn your_project.wsgi -D # √</li>
 </ul></li>
-<li><p>√关闭在后台运行的 </p>
+<li><p>关闭在后台运行的gunicorn: </p>
 
 <ul>
-<li>gunicorn: sudo pkill gunicorn # √</li>
+<li>sudo pkill gunicorn # √</li>
 </ul></li>
 </ul>
 
@@ -272,12 +318,11 @@ sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-availab
 <ul>
 <li><p>Supervisor 能够在 Gunicorn 进程被终止后, 重启进程.</p></li>
 <li><p>√安装: sudo apt install supervisor</p></li>
-<li><p>√修改配置文件: sudo nano /etc/supervisor/conf.d/your_project.conf</p>
-
-<ul>
-<li>例如, sudo nano /etc/supervisor/conf.d/mysite.conf</li>
-</ul></li>
+<li><p>√修改配置文件: </p></li>
 </ul>
+
+<p>sudo nano /etc/supervisor/conf.d/mysite.conf # √
+(上传配置文件也可以: cd /etc/supervisor/conf.d √ sudo trz √)</p>
 
 <div class="codehilite">
 <pre><span></span><code><span class="o">[</span>program:mysite<span class="o">]</span>
@@ -287,7 +332,7 @@ sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-availab
 </div>
 
 <ul>
-<li><p>在 command 中, 3=2✖️2(1 个核)+1, 其实我的 逻辑core =4, 是不是可以开 2*4+1=9 个线程?</p></li>
+<li><p>在 command 中, 5=2✖️2(2个核)+1, 我的阿里云服务器有两个核, 因此设置为5.</p></li>
 <li><p>√通知 supervisor 配置变化了: sudo supervisorctl reread</p></li>
 <li><p>√更新: sudo supervisorctl update</p></li>
 <li><p>√重启所有进程: sudo supervisorctl restart all</p></li>

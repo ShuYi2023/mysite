@@ -1,4 +1,7 @@
-#注意: 在vs code中运行时, 要选择 run Python file 这个选项, 而不是直接点击快捷键.
+'''
+DJANGO_DEBUG=True python manage.py runserver
+注意: 在vs code中运行时, 要选择 run Python file 这个选项, 而不是直接点击快捷键.
+'''
 
 import sys
 import tkinter
@@ -24,11 +27,10 @@ sections = ['gao', 'django', 'animation', 'ue', 'u3d', 'tailwind']
 sue_or_max='max'
 yauthor = User.objects.get(username=sue_or_max)
 
-
-file_meta = {"section": "gao", # ue, u3d, tailwind, python, ksp
-             "project": "gao_book",
-             "chapter": "k01",
-             "for_vip": True,
+file_meta = {"section": "django", # ue, u3d, tailwind, python, ksp
+             "project": "deploy",
+             "chapter": "b01",
+             "for_vip": False,
              "title": "",
              "author": yauthor, # Foreign Key
              "updated_on": timezone.now(),  # data_time
@@ -117,8 +119,9 @@ with open(html_output_path, 'r', encoding='UTF-8') as f:
 
 # *** 查找和替换 √
 yseq = 0
-old_text = '√'
+# old_text = '√'
 # old_text = '~~'
+old_text = '✅'
 new_text_begin = r'<span class="ycb-ysuper"> <span class ="ycb">V</span> <span class ="ysuper" >'
 new_text_end = r'</span > </span >'
 new_text = ''
