@@ -2,6 +2,7 @@
 # settings.py
 db.sqlite3
 zz/
+static_root/
 output_no_check.html
 output_with_check.html
 dailyftp.py
@@ -10,7 +11,6 @@ sftpSingleFile*.*
 sftpTo244v2.py
 .gitignore
 *.exe
-# md2html*.py
 makeHTML.py
 .idea/
 .DS_store
