@@ -202,8 +202,30 @@ obj.tags.add(file_meta["section"])
 
 if file_meta["for_vip"]:
     obj.tags.add("vip")
+    if 'free' in obj.tags.names():
+        obj.tags.remove('free')
 else:
     obj.tags.add("free")
-
+    if 'vip' in obj.tags.names():
+        obj.tags.remove('vip')
 
 print("博文更新成功!")
+
+# *** 删除生成的中间文件
+
+html_output_path1 = os.path.join(output_path, 'output_no_check.html')
+html_output_path2 = os.path.join(output_path, 'output_with_check.html')
+
+# Delete file1
+if os.path.exists(html_output_path1):
+    os.remove(html_output_path1)
+    print(f"Removed {html_output_path1}")
+else: 
+    print(f"File does not exist: {html_output_path1}")
+    
+# Delete file2  
+if os.path.exists(html_output_path2):
+    os.remove(html_output_path2)
+    print(f"Removed {html_output_path2}")
+else: 
+    print(f"File does not exist: {html_output_path2}")

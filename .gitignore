@@ -8,7 +8,7 @@ dailyftp.py
 dailyftp*.py
 sftpSingleFile*.*
 sftpTo244v2.py
-# .gitignore
+.gitignore
 *.exe
 # md2html*.py
 makeHTML.py
